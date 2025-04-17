@@ -1,0 +1,213 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:member_id",
+ "creation": "2025-03-17 14:01:34.605294",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "full_name",
+  "member_id",
+  "date_of_birth",
+  "contact_number",
+  "email_address",
+  "address",
+  "column_break_mqsz",
+  "document",
+  "number_of_above_id",
+  "membership_id",
+  "loyalty_points_balance",
+  "frequent_stay_hotel_branch",
+  "pf_section",
+  "preferences",
+  "hotel_room_type",
+  "section_break_gptu",
+  "club_no",
+  "salary_code",
+  "date_of_retirement",
+  "expirydateafter_extention",
+  "remarks",
+  "column_break_dvar",
+  "father_name",
+  "spouse_name",
+  "child_details",
+  "other_family_details"
+ ],
+ "fields": [
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name"
+  },
+  {
+   "fieldname": "member_id",
+   "fieldtype": "Data",
+   "label": "Member ID",
+   "unique": 1
+  },
+  {
+   "fieldname": "date_of_birth",
+   "fieldtype": "Date",
+   "label": "Date of Birth"
+  },
+  {
+   "fieldname": "contact_number",
+   "fieldtype": "Phone",
+   "label": "Contact Number"
+  },
+  {
+   "fieldname": "email_address",
+   "fieldtype": "Data",
+   "label": "Email Address"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
+  },
+  {
+   "fieldname": "column_break_mqsz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "document",
+   "fieldtype": "Select",
+   "label": "Document",
+   "options": "Adhar\nPAN\nDriver License"
+  },
+  {
+   "fieldname": "number_of_above_id",
+   "fieldtype": "Data",
+   "label": "Number of above ID"
+  },
+  {
+   "fieldname": "membership_id",
+   "fieldtype": "Link",
+   "label": "Membership ID",
+   "options": "Membership"
+  },
+  {
+   "fieldname": "preferences",
+   "fieldtype": "Select",
+   "label": "Preferences ",
+   "options": "Smoking\nView\nLate Checkout"
+  },
+  {
+   "fieldname": "loyalty_points_balance",
+   "fieldtype": "Int",
+   "label": "Loyalty Points Balance"
+  },
+  {
+   "fieldname": "frequent_stay_hotel_branch",
+   "fieldtype": "Select",
+   "label": "Frequent Stay Hotel Branch",
+   "options": "Assam\nKolkata\nGangtok"
+  },
+  {
+   "fieldname": "section_break_gptu",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "club_no",
+   "fieldtype": "Data",
+   "label": "Club No."
+  },
+  {
+   "fieldname": "salary_code",
+   "fieldtype": "Data",
+   "label": "Salary Code"
+  },
+  {
+   "fieldname": "date_of_retirement",
+   "fieldtype": "Date",
+   "label": "DATE OF RETIREMENT"
+  },
+  {
+   "fieldname": "expirydateafter_extention",
+   "fieldtype": "Date",
+   "label": "EXPIRYDATE(AFTER EXTENTION)"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Select",
+   "label": "Remarks",
+   "options": "Active\nInActive"
+  },
+  {
+   "fieldname": "column_break_dvar",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "father_name",
+   "fieldtype": "Data",
+   "label": "Father Name"
+  },
+  {
+   "fieldname": "spouse_name",
+   "fieldtype": "Data",
+   "label": "Spouse Name"
+  },
+  {
+   "fieldname": "child_details",
+   "fieldtype": "Table",
+   "label": "Child Details",
+   "options": "Child Details"
+  },
+  {
+   "fieldname": "other_family_details",
+   "fieldtype": "Table",
+   "label": "Other Family Details",
+   "options": "Child Details"
+  },
+  {
+   "fieldname": "pf_section",
+   "fieldtype": "Section Break",
+   "label": "PF"
+  },
+  {
+   "fieldname": "hotel_room_type",
+   "fieldtype": "Link",
+   "label": "Hotel Room Type",
+   "options": "Hotel Room Type"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [
+  {
+   "link_doctype": "Membership",
+   "link_fieldname": "membership_type"
+  },
+  {
+   "link_doctype": "Sales Invoice",
+   "link_fieldname": "customer"
+  },
+  {
+   "link_doctype": "Room Reservation",
+   "link_fieldname": "member_name"
+  }
+ ],
+ "modified": "2025-04-16 18:46:11.438998",
+ "modified_by": "Administrator",
+ "module": "Guest House",
+ "name": "Member Details",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "full_name"
+}

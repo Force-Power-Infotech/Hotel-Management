@@ -1,7 +1,7 @@
 app_name = "hospitality"
-app_title = "Hospital management"
+app_title = "Hotel management"
 app_publisher = "Admin"
-app_description = "hotel management"
+app_description = "Hotel management"
 app_email = "123@gmail.com"
 app_license = "mit"
 
@@ -241,4 +241,37 @@ app_license = "mit"
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
+# doc_events = {
+#     "Hotel Room": {
+#         "after_insert": "hospitality.hotel_management.hotel.hotel_room_with_items",
+#     },
+#     "Member Details": {
+#         "on_update": "hospitality.hotel_management.hotel.sync_member_to_customer",
+#         "after_insert": "hospitality.hotel_management.hotel.sync_member_to_customer",
+#     }
+# }
+doc_events = {
+    "Hotel Room": {
+        "after_insert": "hospitality.hotel_management.hotel.hotel_room_with_items",
+        "on_update": "hospitality.hotel_management.hotel.hotel_room_with_items",
+    },
+    "Member Details": {
+        "after_insert": "hospitality.hotel_management.hotel.sync_member_to_customer",
+    },
+    # "Item": {
+    #     "after_insert": "hospitality.hotel_management.hotel.link_item_with_membership_type",
+    # },
+    "Guest Details": {
+        "after_insert": "hospitality.hotel_management.hotel.sync_guest_to_customer",
+    },
+     "Room Pricing": {
+        "after_insert": "hospitality.hotel_management.hotel.sync_room_pricing_to_item_pricing",
+    },
+    "Hotel Room Type": {
+        "after_insert": "hospitality.hotel_management.hotel.hotel_room_type_to_item",
+    }
 
+}
+
+app_include_css = "hospitality/guest_house/doctype/room_reservation/calendar_view.css"
+app_include_js = "hospitality/guest_house/doctype/room_reservation/calendar_view.js"

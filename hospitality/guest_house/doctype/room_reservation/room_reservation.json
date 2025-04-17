@@ -1,0 +1,192 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:booking_id",
+ "creation": "2025-03-17 14:19:07.972505",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "booking_id",
+  "member_name",
+  "guest_name",
+  "details_of_people",
+  "sponsor_member_name",
+  "column_break_bveb",
+  "member",
+  "contact_number",
+  "email_id",
+  "number_of_people",
+  "amount_paid",
+  "section_break_wfum",
+  "hotel_room_type",
+  "checkin_date",
+  "column_break_zwfr",
+  "hotel_room_number",
+  "checkout_date",
+  "column_break_qobe",
+  "preference",
+  "reservation_status",
+  "section_break_vgge",
+  "payment_method",
+  "section_break_kqpc",
+  "special_requests"
+ ],
+ "fields": [
+  {
+   "fieldname": "booking_id",
+   "fieldtype": "Data",
+   "label": "Booking ID",
+   "unique": 1
+  },
+  {
+   "depends_on": "member",
+   "fieldname": "member_name",
+   "fieldtype": "Link",
+   "label": "Member Name",
+   "options": "Member Details"
+  },
+  {
+   "fieldname": "guest_name",
+   "fieldtype": "Link",
+   "label": "Guest Name",
+   "options": "Guest Details"
+  },
+  {
+   "fieldname": "details_of_people",
+   "fieldtype": "Table",
+   "label": "Details of People",
+   "options": "Details of People"
+  },
+  {
+   "default": "0",
+   "fieldname": "sponsor_member_name",
+   "fieldtype": "Check",
+   "label": "Sponsor Member Name"
+  },
+  {
+   "fieldname": "column_break_bveb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "member",
+   "fieldtype": "Check",
+   "label": "Member"
+  },
+  {
+   "fetch_from": "member_name.contact_number",
+   "fieldname": "contact_number",
+   "fieldtype": "Phone",
+   "label": "Contact Number"
+  },
+  {
+   "fetch_from": "member_name.email_address",
+   "fieldname": "email_id",
+   "fieldtype": "Data",
+   "label": "Email ID"
+  },
+  {
+   "fieldname": "number_of_people",
+   "fieldtype": "Int",
+   "label": "Number of People"
+  },
+  {
+   "fieldname": "amount_paid",
+   "fieldtype": "Currency",
+   "label": "Amount Paid"
+  },
+  {
+   "fieldname": "section_break_wfum",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "hotel_room_number.room_type",
+   "fieldname": "hotel_room_type",
+   "fieldtype": "Link",
+   "label": "Hotel Room Type",
+   "options": "Hotel Room Type"
+  },
+  {
+   "fieldname": "checkin_date",
+   "fieldtype": "Date",
+   "label": "Checkin Date"
+  },
+  {
+   "fieldname": "column_break_zwfr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "hotel_room_number",
+   "fieldtype": "Link",
+   "label": "Hotel Room Number",
+   "options": "Hotel Room"
+  },
+  {
+   "fieldname": "checkout_date",
+   "fieldtype": "Date",
+   "label": "Checkout Date"
+  },
+  {
+   "fieldname": "column_break_qobe",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "reservation_status",
+   "fieldtype": "Select",
+   "label": "Reservation Status",
+   "options": "Booked\nPaid"
+  },
+  {
+   "fieldname": "section_break_vgge",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "payment_method",
+   "fieldtype": "Select",
+   "label": "Payment Method",
+   "options": "Card\nCash"
+  },
+  {
+   "fieldname": "section_break_kqpc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "special_requests",
+   "fieldtype": "Small Text",
+   "label": "Special Requests"
+  },
+  {
+   "fetch_from": "member_name.preferences",
+   "fieldname": "preference",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Hotel Room Preference"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-04-15 18:46:55.490937",
+ "modified_by": "Administrator",
+ "module": "Guest House",
+ "name": "Room Reservation",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "booking_id"
+}

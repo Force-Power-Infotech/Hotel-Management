@@ -1,0 +1,173 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:room_number",
+ "creation": "2025-03-17 13:33:05.227766",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "room_number",
+  "itemnumber",
+  "floor_number",
+  "column_break_swrb",
+  "current_status",
+  "image",
+  "active",
+  "section_break_nhcr",
+  "room_type",
+  "maximum_occupancy",
+  "extra_bed_capacity",
+  "description",
+  "column_break_hymv",
+  "view",
+  "smoking",
+  "room_size",
+  "bed_type",
+  "section_break_qgua",
+  "amenities"
+ ],
+ "fields": [
+  {
+   "fieldname": "room_number",
+   "fieldtype": "Data",
+   "label": "Room Number",
+   "unique": 1
+  },
+  {
+   "fieldname": "itemnumber",
+   "fieldtype": "Link",
+   "label": "itemnumber",
+   "options": "Item",
+   "unique": 1
+  },
+  {
+   "fieldname": "floor_number",
+   "fieldtype": "Int",
+   "label": "Floor Number"
+  },
+  {
+   "fieldname": "column_break_swrb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "current_status",
+   "fieldtype": "Select",
+   "label": "Current Status",
+   "options": "Available\nOccupied\nCleaning"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "in_preview": 1,
+   "label": "Image"
+  },
+  {
+   "fieldname": "section_break_nhcr",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "room_type",
+   "fieldtype": "Link",
+   "label": "Room Type",
+   "options": "Hotel Room Type"
+  },
+  {
+   "fetch_from": "room_type.int_zicn",
+   "fieldname": "maximum_occupancy",
+   "fieldtype": "Data",
+   "label": "Maximum Occupancy"
+  },
+  {
+   "fetch_from": "room_type.extra_bed_capacity",
+   "fieldname": "extra_bed_capacity",
+   "fieldtype": "Int",
+   "label": "Extra Bed Capacity"
+  },
+  {
+   "fetch_from": "room_type.description",
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "column_break_hymv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "view",
+   "fieldtype": "Select",
+   "label": "View ",
+   "options": "Sea\nGarden\nCity"
+  },
+  {
+   "default": "0",
+   "fieldname": "smoking",
+   "fieldtype": "Check",
+   "label": "Smoking"
+  },
+  {
+   "fetch_from": "room_type.room_size",
+   "fieldname": "room_size",
+   "fieldtype": "Data",
+   "label": "Room Size"
+  },
+  {
+   "fetch_from": "room_type.bed_type",
+   "fieldname": "bed_type",
+   "fieldtype": "Data",
+   "label": "Bed Type"
+  },
+  {
+   "fieldname": "section_break_qgua",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amenities",
+   "fieldtype": "Table",
+   "label": "Amenities",
+   "options": "Amenities"
+  },
+  {
+   "default": "0",
+   "fieldname": "active",
+   "fieldtype": "Check",
+   "label": "Active"
+  }
+ ],
+ "image_field": "image",
+ "index_web_pages_for_search": 1,
+ "links": [
+  {
+   "link_doctype": "Room Reservation",
+   "link_fieldname": "hotel_room_number"
+  },
+  {
+   "link_doctype": "Hotel Room Type",
+   "link_fieldname": "hotel_room"
+  }
+ ],
+ "modified": "2025-04-17 06:50:30.697329",
+ "modified_by": "Administrator",
+ "module": "Guest House",
+ "name": "Hotel Room",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "room_number"
+}

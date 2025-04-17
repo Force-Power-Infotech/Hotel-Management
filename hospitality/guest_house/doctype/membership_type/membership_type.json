@@ -1,0 +1,98 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:membership_type_name",
+ "creation": "2025-03-17 13:45:29.725291",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "membership_type_name",
+  "access_level",
+  "column_break_jcfs",
+  "tier",
+  "annual_fee",
+  "reward_points_system",
+  "section_break_wmev",
+  "additional_perks"
+ ],
+ "fields": [
+  {
+   "fieldname": "membership_type_name",
+   "fieldtype": "Data",
+   "label": "Membership Type Name",
+   "unique": 1
+  },
+  {
+   "fieldname": "access_level",
+   "fieldtype": "Select",
+   "label": "Access Level",
+   "options": "Lounge\nDiscount\nFree Stays"
+  },
+  {
+   "fieldname": "column_break_jcfs",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tier",
+   "fieldtype": "Select",
+   "label": "Tier ",
+   "options": "Gold\nPlatinum\nDiamond"
+  },
+  {
+   "fieldname": "annual_fee",
+   "fieldtype": "Currency",
+   "label": "Annual Fee"
+  },
+  {
+   "default": "0",
+   "fieldname": "reward_points_system",
+   "fieldtype": "Check",
+   "label": "Reward Points System"
+  },
+  {
+   "fieldname": "section_break_wmev",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "additional_perks",
+   "fieldtype": "Table",
+   "label": "Additional Perks",
+   "options": "Additional Perks"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [
+  {
+   "link_doctype": "Membership",
+   "link_fieldname": "membership_type"
+  },
+  {
+   "link_doctype": "Member Details",
+   "link_fieldname": "membership_id"
+  }
+ ],
+ "modified": "2025-04-14 22:34:19.253097",
+ "modified_by": "Administrator",
+ "module": "Guest House",
+ "name": "Membership Type",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "membership_type_name"
+}

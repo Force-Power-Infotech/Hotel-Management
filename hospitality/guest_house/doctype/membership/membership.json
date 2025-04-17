@@ -1,0 +1,98 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:membership_name",
+ "creation": "2025-03-17 13:54:24.364766",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "membership_id",
+  "membership_name",
+  "membership_type",
+  "start_date",
+  "end_date",
+  "column_break_auwv",
+  "preferred_payment_method",
+  "status"
+ ],
+ "fields": [
+  {
+   "fieldname": "membership_id",
+   "fieldtype": "Int",
+   "label": "Membership ID"
+  },
+  {
+   "fieldname": "membership_name",
+   "fieldtype": "Data",
+   "label": "Membership Name",
+   "unique": 1
+  },
+  {
+   "fieldname": "membership_type",
+   "fieldtype": "Link",
+   "label": "Membership Type",
+   "options": "Membership Type"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date"
+  },
+  {
+   "fieldname": "preferred_payment_method",
+   "fieldtype": "Select",
+   "label": "Preferred Payment Method",
+   "options": "Cash\nCard"
+  },
+  {
+   "fieldname": "column_break_auwv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status ",
+   "options": "Active\nExpired"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [
+  {
+   "link_doctype": "Member Details",
+   "link_fieldname": "membership_id"
+  },
+  {
+   "link_doctype": "Membership Type",
+   "link_fieldname": "membership_type_name"
+  }
+ ],
+ "modified": "2025-04-17 06:52:28.284847",
+ "modified_by": "Administrator",
+ "module": "Guest House",
+ "name": "Membership",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "membership_name"
+}

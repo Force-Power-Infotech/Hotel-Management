@@ -1,0 +1,60 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-04-03 12:49:38.801890",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "room",
+  "from_date",
+  "to_date",
+  "rate"
+ ],
+ "fields": [
+  {
+   "fieldname": "room",
+   "fieldtype": "Link",
+   "label": "Room",
+   "options": "Hotel Room"
+  },
+  {
+   "fieldname": "from_date",
+   "fieldtype": "Date",
+   "label": "FROM DATE"
+  },
+  {
+   "fieldname": "to_date",
+   "fieldtype": "Date",
+   "label": "TO DATE"
+  },
+  {
+   "fieldname": "rate",
+   "fieldtype": "Currency",
+   "label": "RATE"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-04-10 18:25:24.459975",
+ "modified_by": "Administrator",
+ "module": "Guest House",
+ "name": "Room Pricing",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

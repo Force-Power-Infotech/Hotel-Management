@@ -1,0 +1,130 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:guest_id",
+ "creation": "2025-04-10 19:42:07.215556",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "guest_id",
+  "full_name",
+  "contact_number",
+  "email_address",
+  "date_of_birth",
+  "address",
+  "column_break_fyqz",
+  "status",
+  "document",
+  "number_of_above_id",
+  "sponsor_member_name",
+  "preferences",
+  "other_family_details"
+ ],
+ "fields": [
+  {
+   "fieldname": "guest_id",
+   "fieldtype": "Data",
+   "label": "Guest ID",
+   "unique": 1
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name"
+  },
+  {
+   "fieldname": "contact_number",
+   "fieldtype": "Phone",
+   "label": "Contact Number"
+  },
+  {
+   "fieldname": "email_address",
+   "fieldtype": "Data",
+   "label": "Email Address"
+  },
+  {
+   "fieldname": "date_of_birth",
+   "fieldtype": "Date",
+   "label": "Date of Birth"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
+  },
+  {
+   "fieldname": "column_break_fyqz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "ACTIVE\nINACTIVE"
+  },
+  {
+   "fieldname": "document",
+   "fieldtype": "Select",
+   "label": "Document",
+   "options": "Adhar\nPAN\nDriver License"
+  },
+  {
+   "fieldname": "number_of_above_id",
+   "fieldtype": "Data",
+   "label": "Number of above ID"
+  },
+  {
+   "fieldname": "sponsor_member_name",
+   "fieldtype": "Link",
+   "label": "Sponsor Member Name",
+   "options": "Member Details"
+  },
+  {
+   "fieldname": "preferences",
+   "fieldtype": "Select",
+   "label": "Preferences ",
+   "options": "Smoking\nView\nLate Checkout"
+  },
+  {
+   "fieldname": "other_family_details",
+   "fieldtype": "Table",
+   "label": "Other Family Details",
+   "options": "Child Details"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [
+  {
+   "link_doctype": "Sales Invoice",
+   "link_fieldname": "customer"
+  },
+  {
+   "link_doctype": "Room Reservation",
+   "link_fieldname": "guest_name"
+  }
+ ],
+ "modified": "2025-04-15 09:25:49.733397",
+ "modified_by": "Administrator",
+ "module": "Guest House",
+ "name": "Guest Details",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "guest_id"
+}

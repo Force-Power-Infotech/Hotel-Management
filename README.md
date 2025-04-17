@@ -1,4 +1,4 @@
-## Hospital management
+## Hotel management
 
 hotel management
 
