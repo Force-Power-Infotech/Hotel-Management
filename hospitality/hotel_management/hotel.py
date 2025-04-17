@@ -1,35 +1,3 @@
-# import frappe
-
-# def hotel_room_with_items(doc, method):
-#     item_group_name = "Hotel Rooms"
-#     if not frappe.db.exists("Item Group", item_group_name):
-#         frappe.get_doc({
-#             "doctype": "Item Group",
-#             "item_group_name": item_group_name,
-#             "parent_item_group": "All Item Groups",  
-#             "is_group": 1  
-#         }).insert(ignore_permissions=True)
-
-#     item_name = f"Hotel Room - {doc.name}"
-
-#     existing_item = frappe.get_all("Item", filters={"item_name": item_name}, limit=1)
-
-#     if existing_item:
-#         item_doc = frappe.get_doc("Item", existing_item[0].name)
-#     else:
-#         item_doc = frappe.get_doc({
-#             "doctype": "Item",
-#             "item_name": item_name,
-#             "item_group": item_group_name,
-#             "description": doc.description or f"Item for Hotel Room {doc.name}",
-#             "is_stock_item": 0,  
-#         })
-#         item_doc.insert(ignore_permissions=True)
-#     item_doc.is_disabled = 0 if doc.active == "Active" else 1
-#     item_doc.save(ignore_permissions=True)
-#     frappe.db.commit()
-
-
 
 import frappe
 
@@ -76,10 +44,6 @@ def hotel_room_with_items(doc, method):
  
 def sync_member_to_customer(doc, method):
     frappe.msgprint("Syncing Member to Customer")
-    """
-    Sync Member Details with Customer Doctype when a Member is created or updated.
-    Only update existing fields in the Customer Doctype.
-    """
     # Check if a Customer exists for this Member
     customer_name = doc.full_name
     existing_customer = frappe.get_all("Customer", filters={"customer_name": customer_name}, limit=1)
@@ -250,7 +214,7 @@ def sync_room_pricing_to_item_pricing(doc, method):
     frappe.db.commit()
 
 
-def  (doc, method):
+def hotel_room_type_to_item(doc, method):
     # Fetch item matching the Hotel Room Type
     item_name = f"Hotel Room - {doc.hotel_room}"
     item = frappe.db.get_value("Item", {"item_code": item_name})
