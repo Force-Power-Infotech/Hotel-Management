@@ -12,10 +12,12 @@
   "room_number",
   "floor_number",
   "view",
-  "column_break_swrb",
   "is_inactive",
+  "column_break_swrb",
   "color",
   "current_status",
+  "image",
+  "smoking",
   "section_break_nhcr",
   "room_type",
   "maximum_occupancy",
@@ -25,7 +27,6 @@
   "room_size",
   "bed_type",
   "sales_item",
-  "smoking",
   "section_break_qgua",
   "amenities"
  ],
@@ -151,8 +152,15 @@
    "fieldname": "color",
    "fieldtype": "Color",
    "label": "Color"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "hidden": 1,
+   "label": "Image"
   }
  ],
+ "image_field": "image",
  "index_web_pages_for_search": 1,
  "links": [
   {
@@ -160,7 +168,7 @@
    "link_fieldname": "hotel_room_number"
   }
  ],
- "modified": "2025-04-18 17:44:48.372105",
+ "modified": "2025-04-18 18:08:48.669023",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Hotel Room",
