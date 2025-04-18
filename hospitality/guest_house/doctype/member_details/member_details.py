@@ -3,7 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
-
+from frappe.utils import getdate, nowdate
 
 class MemberDetails(Document):
 
@@ -14,5 +14,7 @@ class MemberDetails(Document):
 			item.membership_type = doc.membership_type,
 			item.start_date = doc.start_date,
 			item.end_date = doc.end_date,
-
-
+	
+	def validate(self):
+		if self.end_date and getdate(nowdate()) > getdate(self.end_date):
+			self.is_inactive = 1
