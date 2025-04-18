@@ -1,0 +1,72 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-04-17 23:31:51.030556",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "add_renewal_button",
+  "membership_type",
+  "start_date",
+  "end_date",
+  "annual_fee",
+  "loyalty_points_balance",
+  "payment_status"
+ ],
+ "fields": [
+  {
+   "fieldname": "loyalty_points_balance",
+   "fieldtype": "Int",
+   "label": "Loyalty Points Balance"
+  },
+  {
+   "fieldname": "payment_status",
+   "fieldtype": "Select",
+   "label": "Payment Status",
+   "options": "Paid\nPending\nFailed"
+  },
+  {
+   "fieldname": "membership_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Membership Type",
+   "options": "Membership Type"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Start Date"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "End Date"
+  },
+  {
+   "fieldname": "annual_fee",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Annual Fee"
+  },
+  {
+   "fieldname": "add_renewal_button",
+   "fieldtype": "Section Break",
+   "label": "Renewal Details"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-04-18 11:36:41.076670",
+ "modified_by": "Administrator",
+ "module": "Hospitality",
+ "name": "Renewal button",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

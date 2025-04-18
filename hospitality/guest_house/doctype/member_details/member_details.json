@@ -18,6 +18,7 @@
   "membership_id",
   "loyalty_points_balance",
   "frequent_stay_hotel_branch",
+  "renewal_table",
   "pf_section",
   "preferences",
   "hotel_room_type",
@@ -27,6 +28,7 @@
   "date_of_retirement",
   "expirydateafter_extention",
   "remarks",
+  "renewal",
   "column_break_dvar",
   "father_name",
   "spouse_name",
@@ -169,6 +171,18 @@
    "fieldtype": "Link",
    "label": "Hotel Room Type",
    "options": "Hotel Room Type"
+  },
+  {
+   "fieldname": "renewal_table",
+   "fieldtype": "Table",
+   "label": "renewal",
+   "options": "Renewal button"
+  },
+  {
+   "fieldname": "renewal",
+   "fieldtype": "Button",
+   "label": "renewal",
+   "options": "get_renewal"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -186,7 +200,7 @@
    "link_fieldname": "member_name"
   }
  ],
- "modified": "2025-04-16 18:46:11.438998",
+ "modified": "2025-04-18 11:25:05.816818",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Member Details",
