@@ -80,5 +80,31 @@ frappe.ui.form.on('Hotel Room', {
 				}
 			});
 		}
+	},
+
+	room_type: function(frm) {
+		if (frm.doc.room_type) {
+			frappe.call({
+				method: 'frappe.client.get',
+				args: {
+					doctype: 'Hotel Room Type',
+					name: frm.doc.room_type
+				},
+				callback: function(r) {
+					if (r.message && r.message.amenities) {
+						let amenities = r.message.amenities;
+						frm.clear_table('amenities');
+						amenities.forEach(row => {
+							let child = frm.add_child('amenities');
+							child.amenities = row.amenities;
+						});
+						frm.refresh_field('amenities');
+					}
+				}
+			});
+		} else {
+			frm.clear_table('amenities');
+			frm.refresh_field('amenities');
+		}
 	}
 });
