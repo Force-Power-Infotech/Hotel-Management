@@ -6,6 +6,7 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "member_preferences",
   "preference_links",
   "section_break_ttmq",
   "room_number",
@@ -143,6 +144,11 @@
   {
    "fieldname": "section_break_ttmq",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "member_preferences",
+   "fieldtype": "Section Break",
+   "label": "Member Preferences"
   }
  ],
  "image_field": "image",
@@ -157,7 +163,7 @@
    "link_fieldname": "hotel_room"
   }
  ],
- "modified": "2025-04-18 13:43:30.794272",
+ "modified": "2025-04-18 13:48:32.026532",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Hotel Room",
