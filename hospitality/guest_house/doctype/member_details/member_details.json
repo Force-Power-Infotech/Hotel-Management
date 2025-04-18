@@ -25,9 +25,11 @@
   "membership_details_section",
   "membership_id",
   "membership_type",
+  "start_date",
   "column_break_jhgi",
   "membership_name",
   "annual_fee",
+  "end_date",
   "section_break_gptu",
   "club_no",
   "date_of_retirement",
@@ -175,7 +177,8 @@
    "fieldname": "membership_type",
    "fieldtype": "Link",
    "label": "Membership Type",
-   "options": "Membership Type"
+   "options": "Membership Type",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_jhgi",
@@ -185,13 +188,15 @@
    "fetch_from": "membership_id.membership_name",
    "fieldname": "membership_name",
    "fieldtype": "Data",
-   "label": "Membership Name"
+   "label": "Membership Name",
+   "read_only": 1
   },
   {
    "fetch_from": "membership_id.annual_fee",
    "fieldname": "annual_fee",
    "fieldtype": "Currency",
-   "label": "Annual Fee"
+   "label": "Annual Fee",
+   "read_only": 1
   },
   {
    "fieldname": "expiry_date_after_extention",
@@ -221,6 +226,20 @@
    "fieldtype": "Check",
    "label": "Is Inactive",
    "read_only": 1
+  },
+  {
+   "fetch_from": "membership_id.start_date",
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "membership_id.end_date",
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
@@ -238,7 +257,7 @@
    "link_fieldname": "member_name"
   }
  ],
- "modified": "2025-04-18 13:30:52.084850",
+ "modified": "2025-04-18 15:30:15.417785",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Member Details",
