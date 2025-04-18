@@ -258,9 +258,6 @@ doc_events = {
         "after_insert": "hospitality.hotel_management.hotel.hotel_room_with_items",
 
     },
-    "Member Details": {
-        "after_insert": "hospitality.hotel_management.hotel.sync_member_to_customer",
-    },
     # "Item": {
     #     "after_insert": "hospitality.hotel_management.hotel.link_item_with_membership_type",
     # },
