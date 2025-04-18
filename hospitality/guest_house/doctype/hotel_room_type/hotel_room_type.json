@@ -6,6 +6,8 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "preference_links",
+  "section_break_ktmy",
   "room_type",
   "int_zicn",
   "extra_bed_capacity",
@@ -13,8 +15,6 @@
   "column_break_ibwf",
   "room_size",
   "bed_type",
-  "hotel_room",
-  "item_id",
   "section_break_xzyu",
   "amenities",
   "dashboard_tab",
@@ -68,12 +68,6 @@
    "options": "Amenities"
   },
   {
-   "fieldname": "hotel_room",
-   "fieldtype": "Link",
-   "label": "Hotel Room",
-   "options": "Hotel Room"
-  },
-  {
    "fieldname": "dashboard_tab",
    "fieldtype": "Tab Break",
    "label": "Dashboard",
@@ -84,10 +78,13 @@
    "fieldtype": "HTML"
   },
   {
-   "fieldname": "item_id",
-   "fieldtype": "Link",
-   "label": "Item id",
-   "options": "Item"
+   "fieldname": "preference_links",
+   "fieldtype": "HTML",
+   "label": "Preference Links"
+  },
+  {
+   "fieldname": "section_break_ktmy",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -108,7 +105,7 @@
    "link_fieldname": "room_type"
   }
  ],
- "modified": "2025-04-17 22:34:54.335167",
+ "modified": "2025-04-18 13:41:31.648314",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Hotel Room Type",
@@ -128,6 +125,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
