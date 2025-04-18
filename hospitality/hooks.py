@@ -281,5 +281,6 @@ doc_events = {
 
 }
 
-app_include_css = "hospitality/guest_house/doctype/room_reservation/calendar_view.css"
-app_include_js = "hospitality/guest_house/doctype/room_reservation/calendar_view.js"
+doctype_calendar_js = {
+    "Room Reservation": "hospitality/guest_house/doctype/room_reservation/room_reservation_calendar.js"
+}
