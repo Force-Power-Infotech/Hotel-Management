@@ -6,25 +6,26 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "member_preferences",
+  "preference_links",
   "section_break_zozi",
   "room_number",
-  "sales_item",
   "floor_number",
+  "view",
   "column_break_swrb",
   "is_inactive",
+  "color",
   "current_status",
-  "image",
-  "active",
   "section_break_nhcr",
   "room_type",
   "maximum_occupancy",
   "extra_bed_capacity",
   "description",
   "column_break_hymv",
-  "view",
-  "smoking",
   "room_size",
   "bed_type",
+  "sales_item",
+  "smoking",
   "section_break_qgua",
   "amenities"
  ],
@@ -52,7 +53,8 @@
   },
   {
    "fieldname": "section_break_nhcr",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Room Type Details"
   },
   {
    "fieldname": "room_type",
@@ -117,19 +119,17 @@
    "options": "Amenities"
   },
   {
+   "fetch_from": "room_type.sales_item",
    "fieldname": "sales_item",
    "fieldtype": "Link",
    "label": "Sales Item",
-   "options": "Item"
+   "options": "Item",
+   "read_only": 1
   },
   {
    "fieldname": "preference_links",
    "fieldtype": "HTML",
    "label": "Preference Links"
-  },
-  {
-   "fieldname": "section_break_ttmq",
-   "fieldtype": "Section Break"
   },
   {
    "fieldname": "member_preferences",
@@ -138,7 +138,8 @@
   },
   {
    "fieldname": "section_break_zozi",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Room Details"
   },
   {
    "default": "0",
@@ -157,13 +158,9 @@
   {
    "link_doctype": "Room Reservation",
    "link_fieldname": "hotel_room_number"
-  },
-  {
-   "link_doctype": "Hotel Room Type",
-   "link_fieldname": "hotel_room"
   }
  ],
- "modified": "2025-04-18 13:48:32.026532",
+ "modified": "2025-04-18 17:44:48.372105",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Hotel Room",

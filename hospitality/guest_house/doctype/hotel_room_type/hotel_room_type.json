@@ -16,6 +16,7 @@
   "column_break_ibwf",
   "room_size",
   "bed_type",
+  "sales_item",
   "section_break_xzyu",
   "amenities"
  ],
@@ -79,6 +80,12 @@
    "fieldname": "member_preferences",
    "fieldtype": "Section Break",
    "label": "Member Preferences"
+  },
+  {
+   "fieldname": "sales_item",
+   "fieldtype": "Link",
+   "label": "Sales Item",
+   "options": "Item"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -88,7 +95,7 @@
    "link_fieldname": "room_type"
   }
  ],
- "modified": "2025-04-18 13:59:51.132414",
+ "modified": "2025-04-18 17:39:32.723085",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Hotel Room Type",
