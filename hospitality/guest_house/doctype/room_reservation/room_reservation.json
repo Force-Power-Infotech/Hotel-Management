@@ -156,7 +156,7 @@
    "label": "Special Requests"
   },
   {
-   "fetch_from": "member_name.preferences",
+   "fetch_from": "member_name.stay_preference",
    "fieldname": "preference",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -165,7 +165,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-04-15 18:46:55.490937",
+ "modified": "2025-04-19 02:04:35.048243",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Room Reservation",
@@ -185,6 +185,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
