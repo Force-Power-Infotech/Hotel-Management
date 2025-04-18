@@ -14,6 +14,7 @@
   "room_size",
   "bed_type",
   "hotel_room",
+  "item_id",
   "section_break_xzyu",
   "amenities",
   "dashboard_tab",
@@ -81,6 +82,12 @@
   {
    "fieldname": "html_vtvy",
    "fieldtype": "HTML"
+  },
+  {
+   "fieldname": "item_id",
+   "fieldtype": "Link",
+   "label": "Item id",
+   "options": "Item"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -101,7 +108,7 @@
    "link_fieldname": "room_type"
   }
  ],
- "modified": "2025-04-17 01:08:26.432225",
+ "modified": "2025-04-17 22:34:54.335167",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Hotel Room Type",

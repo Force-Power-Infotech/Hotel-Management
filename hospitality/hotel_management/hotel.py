@@ -1,46 +1,52 @@
 
 import frappe
 
-def hotel_room_with_items(doc, method):
-    # frappe.msgprint("Syncing Hotel Room with Items")
-    # frappe.log_error(title="Treiggered")
-    # frappe.logger().info(f"Hotel Room {doc} is being processed on save.")
-    # doc=frappe.get_doc("Hotel Room", doc)
-    # Ensure the item group exists
-    item_group_name = "Hotel Rooms"
-    
-    if not frappe.db.exists("Item Group", item_group_name):
-        
-        frappe.get_doc({
-            "doctype": "Item Group",
-            "item_group_name": item_group_name,
-            "parent_item_group": "All Item Groups",  # Adjust if needed
-            "is_group": 1
-        }).insert(ignore_permissions=True)
+def hotel_room_type_with_items(doc, method):
+    hotel_room_type =frappe.get_doc ("Hotel Room Type", doc.name)
+    item_name = f"Type -{doc.name} -{doc.hotel_room}"
 
-    # Check or create the corresponding item
-    item_name = f"Hotel Room - {doc.name}"
-    existing_item = frappe.get_all("Item", filters={"item_name": item_name}, limit=1)
+    item = frappe.db.get_value("Item", {"item_code": item_name})
+    hotel_room_type.item_id = item_name
+    hotel_room_type.save()
+    # # frappe.msgprint("Syncing Hotel Room with Items")
+    # # frappe.log_error(title="Treiggered")
+    # # frappe.logger().info(f"Hotel Room {doc} is being processed on save.")
+    # # doc=frappe.get_doc("Hotel Room", doc)
+    # # Ensure the item group exists
+    # item_group_name = "Hotel Rooms"
     
-    if existing_item:
+    # if not frappe.db.exists("Item Group", item_group_name):
         
-        item_doc = frappe.get_doc("Item", existing_item[0].name)
-    else:
-        
-        item_doc = frappe.get_doc({
-            "doctype": "Item",
-            "item_code": item_name,
-            "item_name": item_name,
-            "item_group": item_group_name,
-            "description": doc.description or f"Item for Hotel Room {doc.name}",
-            "is_stock_item": 0,  # Set as non-stock item
-        })
-        item_doc.insert(ignore_permissions=True)
+    #     frappe.get_doc({
+    #         "doctype": "Item Group",
+    #         "item_group_name": item_group_name,
+    #         "parent_item_group": "All Item Groups",  # Adjust if needed
+    #         "is_group": 1
+    #     }).insert(ignore_permissions=True)
+
+    # # Check or create the corresponding item
+    # item_name = f"Hotel Room - {doc.name}"
+    # existing_item = frappe.get_all("Item", filters={"item_name": item_name}, limit=1)
     
-    # Update the is_disabled field
-    item_doc.disabled = 0 if doc.active == 1 else 0
-    item_doc.save(ignore_permissions=True)
-    frappe.db.commit()
+    # if existing_item:
+        
+    #     item_doc = frappe.get_doc("Item", existing_item[0].name)
+    # else:
+        
+    #     item_doc = frappe.get_doc({
+    #         "doctype": "Item",
+    #         "item_code": item_name,
+    #         "item_name": item_name,
+    #         "item_group": item_group_name,
+    #         "description": doc.description or f"Item for Hotel Room {doc.name}",
+    #         "is_stock_item": 0,  # Set as non-stock item
+    #     })
+    #     item_doc.insert(ignore_permissions=True)
+    
+    # # Update the is_disabled field
+    # item_doc.disabled = 0 if doc.active == 1 else 0
+    # item_doc.save(ignore_permissions=True)
+    # frappe.db.commit()
  
 def sync_member_to_customer(doc, method):
     frappe.msgprint("Syncing Member to Customer")
@@ -214,10 +220,10 @@ def sync_room_pricing_to_item_pricing(doc, method):
     frappe.db.commit()
 
 
-def hotel_room_type_to_item(doc, method):
-    # Fetch item matching the Hotel Room Type
-    item_name = f"Hotel Room - {doc.hotel_room}"
+def hotel_room_to_item(doc, method):
+    item_name = f"Hotel Room - {doc.room_number}"
     item = frappe.db.get_value("Item", {"item_code": item_name})
+    frappe.log_error(title=item)
 
     item_data = {
         "item_code": item_name,
@@ -227,7 +233,56 @@ def hotel_room_type_to_item(doc, method):
         "description": f"Room Type: {doc.room_type}, Bed Type: {doc.bed_type}, Room Size: {doc.room_size}",
         "is_sales_item": 1,
         "is_purchase_item": 0,
-        "include_item_in_manufacturing": 0
+        "include_item_in_manufacturing": 0,
+        "disabled": doc.active
+    }
+
+    # Update if item exists
+    if item:
+
+        item_data_o = {
+            "item_group": "Hotel Rooms",
+            "stock_uom": "Nos",
+            "description": f"Room Type: {doc.room_type}, Bed Type: {doc.bed_type}, Room Size: {doc.room_size}",
+            "is_sales_item": 1,
+            "is_purchase_item": 0,
+            "include_item_in_manufacturing": 0,
+            "disabled": 0 if doc.active ==1 else 1
+        }
+
+        item_doc = frappe.get_doc("Item", item)
+        item_doc.update(item_data_o)
+
+        # item_doc.disabled = 0 if doc.active == 1 else 1
+        item_doc.save()
+    else:
+        # Create new item if not exists
+        item_doc = frappe.get_doc({
+            "doctype": "Item",
+            **item_data
+        })
+        item_doc.insert()
+    
+    frappe.db.commit()
+
+
+
+def hotel_room_type_to_item(doc, method):
+
+    item_name = f"Type -{doc.name} -{doc.hotel_room}"
+    item = frappe.db.get_value("Item", {"item_code": item_name})
+    # frappe.log_error(title=item)
+
+    item_data = {
+        "item_code": item_name,
+        "item_name": doc.room_type,
+        "item_group": "Hotel Rooms",
+        "stock_uom": "Nos",
+        "description": f"Room Type: {doc.room_type}, Bed Type: {doc.bed_type}, Room Size: {doc.room_size}",
+        "is_sales_item": 1,
+        "is_purchase_item": 0,
+        # "include_item_in_manufacturing": 0,
+        # "disabled": doc.active
     }
 
     # Update if item exists
@@ -244,3 +299,10 @@ def hotel_room_type_to_item(doc, method):
         item_doc.insert()
     
     frappe.db.commit()
+
+def hotel_room_with_items(doc, method):
+    hotel_room= frappe.get_doc("Hotel Room", doc.name)
+    item_name= f"Type -{doc.room_type} -{doc.name}"
+    item= frappe.db.get_value("Item", {"item_code": item_name})
+    hotel_room.item_id = item
+    hotel_room.save()
