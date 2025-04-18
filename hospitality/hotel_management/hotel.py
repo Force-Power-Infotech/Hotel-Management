@@ -47,42 +47,6 @@ def hotel_room_type_with_items(doc, method):
     # item_doc.disabled = 0 if doc.active == 1 else 0
     # item_doc.save(ignore_permissions=True)
     # frappe.db.commit()
- 
-def sync_member_to_customer(doc, method):
-    frappe.msgprint("Syncing Member to Customer")
-    # Check if a Customer exists for this Member
-    customer_name = doc.full_name
-    existing_customer = frappe.get_all("Customer", filters={"customer_name": customer_name}, limit=1)
-    # frappe.log_error(title="Customer", message=doc.as_dict())
-    # Map fields between Member Details and Customer
-    mapped_fields = {
-        "customer_name": doc.full_name,
-        "email_id": doc.email_address,
-        "mobile_no": doc.contact_number,
-        "customer_type": "Individual",  # Default to Individual if not specified
-        "customer_group": "Regular Members",  # Set default customer group
-        "territory": "India",  # Default to India if no branch specified
-        "custom_date_of_birth": doc.date_of_birth,
-        "custom_club_no": doc.club_no,
-        "custom_salary_n o": doc.salary_code,
-        "custom_is_member":1
-    }
- 
-    if existing_customer:
-        # Update the existing Customer
-        customer_doc = frappe.get_doc("Customer", existing_customer[0].name)
-        for field, value in mapped_fields.items():
-            if field in customer_doc.as_dict():
-                customer_doc.set(field, value)
-        customer_doc.save(ignore_permissions=True)
-    else:
-        # Create a new Customer
-        customer_doc = frappe.get_doc({
-            "doctype": "Customer",
-            **mapped_fields,
-        })
-        customer_doc.save(ignore_permissions=True)
-    frappe.db.commit() 
 
 # def hotel_room_with_items(doc, method):
 #     # frappe.msgprint(" membership with Items")

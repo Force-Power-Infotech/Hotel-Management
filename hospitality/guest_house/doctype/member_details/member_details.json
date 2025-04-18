@@ -18,6 +18,7 @@
   "number_of_above_id",
   "loyalty_points_balance",
   "frequent_stay_hotel_branch",
+  "customer",
   "preferences_section",
   "hotel_room_type_preference",
   "column_break_ssxi",
@@ -36,7 +37,6 @@
   "section_break_gptu",
   "club_no",
   "date_of_retirement",
-  "remarks",
   "column_break_dvar",
   "salary_code",
   "expiry_date_after_extention",
@@ -89,7 +89,7 @@
    "fieldname": "document",
    "fieldtype": "Select",
    "label": "Document",
-   "options": "Adhar\nPAN\nDriver License"
+   "options": "Aadhaar\nPAN\nDriver License"
   },
   {
    "fieldname": "number_of_above_id",
@@ -131,12 +131,6 @@
    "fieldname": "date_of_retirement",
    "fieldtype": "Date",
    "label": "Date of Retirement"
-  },
-  {
-   "fieldname": "remarks",
-   "fieldtype": "Select",
-   "label": "Remarks",
-   "options": "Active\nInActive"
   },
   {
    "fieldname": "column_break_dvar",
@@ -246,6 +240,13 @@
    "fieldtype": "Date",
    "label": "End Date",
    "read_only": 1
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer",
+   "read_only": 1
    },
    {
    "fieldname": "renewal_table",
@@ -280,7 +281,7 @@
    "link_fieldname": "member_name"
   }
  ],
- "modified": "2025-04-18 15:30:15.417785",
+ "modified": "2025-04-18 16:55:58.317940",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Member Details",
