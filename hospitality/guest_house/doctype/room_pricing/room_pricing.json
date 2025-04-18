@@ -5,21 +5,14 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "room",
+  "room_number",
   "sales_item",
   "from_date",
   "to_date",
-  "rate"
+  "rate",
+  "sales_item_price"
  ],
  "fields": [
-  {
-   "fieldname": "room",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Room",
-   "options": "Hotel Room",
-   "reqd": 1
-  },
   {
    "fieldname": "from_date",
    "fieldtype": "Date",
@@ -39,18 +32,34 @@
    "reqd": 1
   },
   {
+   "fetch_from": "room_number.sales_item",
    "fieldname": "sales_item",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Sales Item",
    "options": "Item",
+   "read_only": 1
+  },
+  {
+   "fieldname": "room_number",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Room Number",
+   "options": "Hotel Room",
    "reqd": 1
+  },
+  {
+   "fieldname": "sales_item_price",
+   "fieldtype": "Link",
+   "label": "Sales Item Price",
+   "options": "Item Price",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-04-18 15:46:41.505784",
+ "modified": "2025-04-19 04:00:46.834535",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Room Pricing",
