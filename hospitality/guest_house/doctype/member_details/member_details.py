@@ -12,11 +12,12 @@ class MemberDetails(Document):
 		if not self.membership_id:
 			frappe.throw("Please select a Membership ID")
 		self.renewal_table = []
-		doc = frappe.db.get_value("Membership", self.membership_id, ["membership_id","start_date", "end_date"], as_dict=True)
+		doc = frappe.db.get_value("Membership", self.membership_id, ["membership_id","start_date", "end_date", "annual_fee"], as_dict=True)
 		self.append("renewal_table", {
 			"membership_type": doc.membership_id,
 			"start_date": doc.start_date,
 			"end_date": doc.end_date,
+			"annual_fee": doc.annual_fee
 		})
 	
 	def validate(self):
