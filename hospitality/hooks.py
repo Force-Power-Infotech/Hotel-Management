@@ -267,12 +267,12 @@ doc_events = {
      "Room Pricing": {
         "after_insert": "hospitality.hotel_management.hotel.sync_room_pricing_to_item_pricing",
     },
-    "Hotel Room Type":{
-        "after_insert": "hospitality.hotel_management.hotel.hotel_room_type_with_items",
-        "validate": "hospitality.hotel_management.hotel.hotel_room_type_to_item",
+    # "Hotel Room Type":{
+    #     "after_insert": "hospitality.hotel_management.hotel.hotel_room_type_with_items",
+    #     "validate": "hospitality.hotel_management.hotel.hotel_room_type_to_item",
 
 
-    }
+    # }
     
     
 
