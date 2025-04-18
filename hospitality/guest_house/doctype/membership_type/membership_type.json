@@ -11,7 +11,6 @@
   "sales_item",
   "column_break_jcfs",
   "tier",
-  "annual_fee",
   "reward_points_system",
   "section_break_wmev",
   "additional_perks"
@@ -38,11 +37,6 @@
    "fieldtype": "Select",
    "label": "Tier ",
    "options": "Gold\nPlatinum\nDiamond"
-  },
-  {
-   "fieldname": "annual_fee",
-   "fieldtype": "Currency",
-   "label": "Annual Fee"
   },
   {
    "default": "0",
@@ -75,10 +69,10 @@
   },
   {
    "link_doctype": "Member Details",
-   "link_fieldname": "membership_id"
+   "link_fieldname": "membership_type"
   }
  ],
- "modified": "2025-04-18 15:35:37.065721",
+ "modified": "2025-04-19 01:07:57.254373",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Membership Type",
