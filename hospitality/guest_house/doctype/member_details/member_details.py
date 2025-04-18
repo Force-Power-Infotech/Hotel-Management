@@ -9,12 +9,12 @@ class MemberDetails(Document):
 
 	@frappe.whitelist()
 	def get_renewal(self):
-		doc=frappe.get_doc("Membership", self.membership_id)
-		for item in self.renewal_table:
-			item.membership_type = doc.membership_type,
-			item.start_date = doc.start_date,
-			item.end_date = doc.end_date,
-	
-	def validate(self):
-		if self.end_date and getdate(nowdate()) > getdate(self.end_date):
-			self.is_inactive = 1
+		if not self.membership_id:
+			frappe.throw("Please select a Membership ID")
+		self.renewal_table = []
+		doc = frappe.db.get_value("Membership", self.membership_id, ["membership_id","start_date", "end_date"], as_dict=True)
+		self.append("renewal_table", {
+			"membership_type": doc.membership_id,
+			"start_date": doc.start_date,
+			"end_date": doc.end_date,
+		})

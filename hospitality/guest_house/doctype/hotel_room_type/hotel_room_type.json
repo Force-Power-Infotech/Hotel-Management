@@ -63,7 +63,7 @@
   {
    "fieldname": "amenities",
    "fieldtype": "Table",
-   "label": "Amenities ",
+   "label": "Amenities",
    "options": "Amenities"
   },
   {

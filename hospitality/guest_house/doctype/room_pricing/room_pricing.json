@@ -6,6 +6,7 @@
  "engine": "InnoDB",
  "field_order": [
   "room",
+  "sales_item",
   "from_date",
   "to_date",
   "rate"
@@ -14,28 +15,42 @@
   {
    "fieldname": "room",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Room",
-   "options": "Hotel Room"
+   "options": "Hotel Room",
+   "reqd": 1
   },
   {
    "fieldname": "from_date",
    "fieldtype": "Date",
-   "label": "FROM DATE"
+   "label": "From Date"
   },
   {
    "fieldname": "to_date",
    "fieldtype": "Date",
-   "label": "TO DATE"
+   "label": "To Date"
   },
   {
    "fieldname": "rate",
    "fieldtype": "Currency",
-   "label": "RATE"
+   "in_list_view": 1,
+   "label": "Rate",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "sales_item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Sales Item",
+   "options": "Item",
+   "reqd": 1
   }
  ],
+ "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-04-10 18:25:24.459975",
+ "modified": "2025-04-18 15:46:41.505784",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Room Pricing",
@@ -54,6 +69,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
