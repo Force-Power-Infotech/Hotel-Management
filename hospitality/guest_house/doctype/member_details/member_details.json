@@ -30,6 +30,9 @@
   "membership_name",
   "annual_fee",
   "end_date",
+  "pf_section",
+  "preferences",
+  "hotel_room_type",
   "section_break_gptu",
   "club_no",
   "date_of_retirement",
@@ -41,7 +44,10 @@
   "father_name",
   "spouse_name",
   "children_details",
-  "other_family_member_details"
+  "other_family_member_details",
+  "renewal_details_tab",
+  "renewal",
+  "renewal_table"
  ],
  "fields": [
   {
@@ -240,6 +246,23 @@
    "fieldtype": "Date",
    "label": "End Date",
    "read_only": 1
+   },
+   {
+   "fieldname": "renewal_table",
+   "fieldtype": "Table",
+   "label": "Renewal Details",
+   "options": "Renewal button"
+  },
+  {
+   "fieldname": "renewal",
+   "fieldtype": "Button",
+   "label": "Get Renewal Details",
+   "options": "get_renewal"
+  },
+  {
+   "fieldname": "renewal_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Renewal Details"
   }
  ],
  "index_web_pages_for_search": 1,
