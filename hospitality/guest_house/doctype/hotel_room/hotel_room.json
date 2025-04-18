@@ -13,6 +13,7 @@
   "current_status",
   "image",
   "active",
+  "item_id",
   "section_break_nhcr",
   "room_type",
   "maximum_occupancy",
@@ -132,6 +133,12 @@
    "fieldname": "active",
    "fieldtype": "Check",
    "label": "Active"
+  },
+  {
+   "fieldname": "item_id",
+   "fieldtype": "Link",
+   "label": "Item id",
+   "options": "Item"
   }
  ],
  "image_field": "image",
@@ -146,7 +153,7 @@
    "link_fieldname": "hotel_room"
   }
  ],
- "modified": "2025-04-17 06:50:30.697329",
+ "modified": "2025-04-17 23:09:20.579740",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Hotel Room",
