@@ -41,7 +41,7 @@
   "father_name",
   "spouse_name",
   "children_details",
-  "other_family_member_details",
+  "family_member_details",
   "renewal_details_tab",
   "renewal",
   "renewal_table"
@@ -212,12 +212,6 @@
    "options": "Child Details"
   },
   {
-   "fieldname": "other_family_member_details",
-   "fieldtype": "Table",
-   "label": "Other Family Member Details",
-   "options": "Child Details"
-  },
-  {
    "default": "0",
    "fieldname": "is_inactive",
    "fieldtype": "Check",
@@ -261,6 +255,12 @@
    "fieldname": "renewal_details_tab",
    "fieldtype": "Tab Break",
    "label": "Renewal Details"
+  },
+  {
+   "fieldname": "family_member_details",
+   "fieldtype": "Table",
+   "label": "Family Member(s) Details",
+   "options": "Child Details"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -274,7 +274,7 @@
    "link_fieldname": "member_name"
   }
  ],
- "modified": "2025-04-19 01:57:16.556161",
+ "modified": "2025-04-19 03:39:15.820228",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Member Details",
