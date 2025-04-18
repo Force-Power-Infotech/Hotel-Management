@@ -13,27 +13,33 @@
   "email_address",
   "address",
   "column_break_mqsz",
+  "is_inactive",
   "document",
   "number_of_above_id",
-  "membership_id",
   "loyalty_points_balance",
   "frequent_stay_hotel_branch",
-  "renewal_table",
-  "pf_section",
-  "preferences",
-  "hotel_room_type",
+  "preferences_section",
+  "hotel_room_type_preference",
+  "column_break_ssxi",
+  "stay_preference",
+  "membership_details_section",
+  "membership_id",
+  "membership_type",
+  "column_break_jhgi",
+  "membership_name",
+  "annual_fee",
   "section_break_gptu",
   "club_no",
-  "salary_code",
   "date_of_retirement",
-  "expirydateafter_extention",
   "remarks",
-  "renewal",
   "column_break_dvar",
+  "salary_code",
+  "expiry_date_after_extention",
+  "section_break_wdck",
   "father_name",
   "spouse_name",
-  "child_details",
-  "other_family_details"
+  "children_details",
+  "other_family_member_details"
  ],
  "fields": [
   {
@@ -89,12 +95,6 @@
    "options": "Membership"
   },
   {
-   "fieldname": "preferences",
-   "fieldtype": "Select",
-   "label": "Preferences ",
-   "options": "Smoking\nView\nLate Checkout"
-  },
-  {
    "fieldname": "loyalty_points_balance",
    "fieldtype": "Int",
    "label": "Loyalty Points Balance"
@@ -122,12 +122,7 @@
   {
    "fieldname": "date_of_retirement",
    "fieldtype": "Date",
-   "label": "DATE OF RETIREMENT"
-  },
-  {
-   "fieldname": "expirydateafter_extention",
-   "fieldtype": "Date",
-   "label": "EXPIRYDATE(AFTER EXTENTION)"
+   "label": "Date of Retirement"
   },
   {
    "fieldname": "remarks",
@@ -150,39 +145,82 @@
    "label": "Spouse Name"
   },
   {
-   "fieldname": "child_details",
-   "fieldtype": "Table",
-   "label": "Child Details",
-   "options": "Child Details"
-  },
-  {
-   "fieldname": "other_family_details",
-   "fieldtype": "Table",
-   "label": "Other Family Details",
-   "options": "Child Details"
-  },
-  {
-   "fieldname": "pf_section",
+   "fieldname": "preferences_section",
    "fieldtype": "Section Break",
-   "label": "PF"
+   "label": "Preferences"
   },
   {
-   "fieldname": "hotel_room_type",
+   "fieldname": "hotel_room_type_preference",
    "fieldtype": "Link",
-   "label": "Hotel Room Type",
+   "label": "Hotel Room Type Preference",
    "options": "Hotel Room Type"
   },
   {
-   "fieldname": "renewal_table",
-   "fieldtype": "Table",
-   "label": "renewal",
-   "options": "Renewal button"
+   "fieldname": "column_break_ssxi",
+   "fieldtype": "Column Break"
   },
   {
-   "fieldname": "renewal",
-   "fieldtype": "Button",
-   "label": "renewal",
-   "options": "get_renewal"
+   "fieldname": "stay_preference",
+   "fieldtype": "Select",
+   "label": "Stay Preference",
+   "options": "Smoking\nView\nLate Checkout"
+  },
+  {
+   "fieldname": "membership_details_section",
+   "fieldtype": "Section Break",
+   "label": "Membership Details"
+  },
+  {
+   "fetch_from": "membership_id.membership_type",
+   "fieldname": "membership_type",
+   "fieldtype": "Link",
+   "label": "Membership Type",
+   "options": "Membership Type"
+  },
+  {
+   "fieldname": "column_break_jhgi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "membership_id.membership_name",
+   "fieldname": "membership_name",
+   "fieldtype": "Data",
+   "label": "Membership Name"
+  },
+  {
+   "fetch_from": "membership_id.annual_fee",
+   "fieldname": "annual_fee",
+   "fieldtype": "Currency",
+   "label": "Annual Fee"
+  },
+  {
+   "fieldname": "expiry_date_after_extention",
+   "fieldtype": "Date",
+   "label": "Expiry Date (After Extension)"
+  },
+  {
+   "fieldname": "section_break_wdck",
+   "fieldtype": "Section Break",
+   "label": "Family Details"
+  },
+  {
+   "fieldname": "children_details",
+   "fieldtype": "Table",
+   "label": "Children Details",
+   "options": "Child Details"
+  },
+  {
+   "fieldname": "other_family_member_details",
+   "fieldtype": "Table",
+   "label": "Other Family Member Details",
+   "options": "Child Details"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_inactive",
+   "fieldtype": "Check",
+   "label": "Is Inactive",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
@@ -200,7 +238,7 @@
    "link_fieldname": "member_name"
   }
  ],
- "modified": "2025-04-18 11:25:05.816818",
+ "modified": "2025-04-18 13:30:52.084850",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Member Details",
@@ -220,6 +258,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
