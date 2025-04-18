@@ -6,13 +6,12 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "member_preferences",
-  "preference_links",
-  "section_break_ttmq",
+  "section_break_zozi",
   "room_number",
-  "itemnumber",
+  "sales_item",
   "floor_number",
   "column_break_swrb",
+  "is_inactive",
   "current_status",
   "image",
   "active",
@@ -37,13 +36,6 @@
    "unique": 1
   },
   {
-   "fieldname": "itemnumber",
-   "fieldtype": "Link",
-   "label": "itemnumber",
-   "options": "Item",
-   "unique": 1
-  },
-  {
    "fieldname": "floor_number",
    "fieldtype": "Int",
    "label": "Floor Number"
@@ -56,13 +48,7 @@
    "fieldname": "current_status",
    "fieldtype": "Select",
    "label": "Current Status",
-   "options": "Available\nOccupied\nCleaning"
-  },
-  {
-   "fieldname": "image",
-   "fieldtype": "Attach Image",
-   "in_preview": 1,
-   "label": "Image"
+   "options": "\nAvailable\nOccupied\nCleaning"
   },
   {
    "fieldname": "section_break_nhcr",
@@ -131,10 +117,10 @@
    "options": "Amenities"
   },
   {
-   "default": "0",
-   "fieldname": "active",
-   "fieldtype": "Check",
-   "label": "Active"
+   "fieldname": "sales_item",
+   "fieldtype": "Link",
+   "label": "Sales Item",
+   "options": "Item"
   },
   {
    "fieldname": "preference_links",
@@ -149,9 +135,23 @@
    "fieldname": "member_preferences",
    "fieldtype": "Section Break",
    "label": "Member Preferences"
+  },
+  {
+   "fieldname": "section_break_zozi",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_inactive",
+   "fieldtype": "Check",
+   "label": "Is Inactive"
+  },
+  {
+   "fieldname": "color",
+   "fieldtype": "Color",
+   "label": "Color"
   }
  ],
- "image_field": "image",
  "index_web_pages_for_search": 1,
  "links": [
   {

@@ -254,7 +254,7 @@ doc_events = {
     "Hotel Room": {
         # "after_insert": "hospitality.hotel_management.hotel.hotel_room_with_items",
         # "on_update": "hospitality.hotel_management.hotel.hotel_room_with_items",
-        "validate": "hospitality.hotel_management.hotel.hotel_room_to_item",
+        # "validate": "hospitality.hotel_management.hotel.hotel_room_to_item",
         "after_insert": "hospitality.hotel_management.hotel.hotel_room_with_items",
 
     },
