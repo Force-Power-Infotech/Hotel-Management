@@ -29,6 +29,7 @@ class MemberDetails(Document):
 			customer = frappe.get_doc({
 				"doctype": "Customer",
 				"customer_name": self.full_name,
+				"custom_member_id": self.member_id,
 				"customer_group": "Regular Members",
 				"custom_email_adreess": self.email_address,
 				"custom_phone_number": self.contact_number,

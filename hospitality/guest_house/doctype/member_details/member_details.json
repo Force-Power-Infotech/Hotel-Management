@@ -31,9 +31,6 @@
   "membership_name",
   "annual_fee",
   "end_date",
-  "pf_section",
-  "preferences",
-  "hotel_room_type",
   "section_break_gptu",
   "club_no",
   "date_of_retirement",
@@ -247,8 +244,8 @@
    "label": "Customer",
    "options": "Customer",
    "read_only": 1
-   },
-   {
+  },
+  {
    "fieldname": "renewal_table",
    "fieldtype": "Table",
    "label": "Renewal Details",
@@ -269,19 +266,15 @@
  "index_web_pages_for_search": 1,
  "links": [
   {
-   "link_doctype": "Membership",
-   "link_fieldname": "membership_type"
-  },
-  {
    "link_doctype": "Sales Invoice",
-   "link_fieldname": "customer"
+   "link_fieldname": "custom_customer_id"
   },
   {
    "link_doctype": "Room Reservation",
    "link_fieldname": "member_name"
   }
  ],
- "modified": "2025-04-18 16:55:58.317940",
+ "modified": "2025-04-19 01:57:16.556161",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Member Details",
