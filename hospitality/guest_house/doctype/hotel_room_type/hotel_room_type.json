@@ -17,9 +17,7 @@
   "room_size",
   "bed_type",
   "section_break_xzyu",
-  "amenities",
-  "dashboard_tab",
-  "html_vtvy"
+  "amenities"
  ],
  "fields": [
   {
@@ -69,16 +67,6 @@
    "options": "Amenities"
   },
   {
-   "fieldname": "dashboard_tab",
-   "fieldtype": "Tab Break",
-   "label": "Dashboard",
-   "show_dashboard": 1
-  },
-  {
-   "fieldname": "html_vtvy",
-   "fieldtype": "HTML"
-  },
-  {
    "fieldname": "preference_links",
    "fieldtype": "HTML",
    "label": "Preference Links"
@@ -96,22 +84,11 @@
  "index_web_pages_for_search": 1,
  "links": [
   {
-   "group": "preference",
-   "link_doctype": "Room Reservation",
-   "link_fieldname": "hotel_room_type",
-   "table_fieldname": "preference"
-  },
-  {
-   "group": "G1",
-   "link_doctype": "Member Details",
-   "link_fieldname": "hotel_room_type"
-  },
-  {
    "link_doctype": "Hotel Room",
    "link_fieldname": "room_type"
   }
  ],
- "modified": "2025-04-18 13:49:24.266482",
+ "modified": "2025-04-18 13:59:51.132414",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Hotel Room Type",
