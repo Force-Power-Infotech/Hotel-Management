@@ -8,17 +8,21 @@
  "field_order": [
   "guest_id",
   "full_name",
+  "date_of_birth",
   "contact_number",
   "email_address",
-  "date_of_birth",
   "address",
   "column_break_fyqz",
-  "status",
+  "is_inactive",
   "document",
   "number_of_above_id",
-  "sponsor_member_name",
-  "preferences",
-  "other_family_details"
+  "stay_preference",
+  "suggested_members_details_section",
+  "suggested_by",
+  "customer",
+  "membership",
+  "section_break_paqc",
+  "family_member_details"
  ],
  "fields": [
   {
@@ -57,16 +61,10 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "label": "Status",
-   "options": "ACTIVE\nINACTIVE"
-  },
-  {
    "fieldname": "document",
    "fieldtype": "Select",
    "label": "Document",
-   "options": "Adhar\nPAN\nDriver License"
+   "options": "Aadhaar\nPAN\nDriver License"
   },
   {
    "fieldname": "number_of_above_id",
@@ -74,21 +72,52 @@
    "label": "Number of above ID"
   },
   {
-   "fieldname": "sponsor_member_name",
+   "default": "0",
+   "fetch_from": "suggested_by.is_inactive",
+   "fieldname": "is_inactive",
+   "fieldtype": "Check",
+   "label": "Is Inactive",
+   "read_only": 1
+  },
+  {
+   "fieldname": "suggested_by",
    "fieldtype": "Link",
-   "label": "Sponsor Member Name",
+   "label": "Suggested by",
    "options": "Member Details"
   },
   {
-   "fieldname": "preferences",
+   "fieldname": "section_break_paqc",
+   "fieldtype": "Section Break",
+   "label": "Family Member(s) Details"
+  },
+  {
+   "fetch_from": "suggested_by.customer",
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Member's Customer ID",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "stay_preference",
    "fieldtype": "Select",
-   "label": "Preferences ",
+   "label": "Stay Preferences",
    "options": "Smoking\nView\nLate Checkout"
   },
   {
-   "fieldname": "other_family_details",
+   "fieldname": "suggested_members_details_section",
+   "fieldtype": "Section Break",
+   "label": "Suggested Member's Details"
+  },
+  {
+   "fetch_from": "suggested_by.membership_id",
+   "fieldname": "membership",
+   "fieldtype": "Link",
+   "label": "Member's Membership ID",
+   "options": "Membership"
+  },
+  {
+   "fieldname": "family_member_details",
    "fieldtype": "Table",
-   "label": "Other Family Details",
    "options": "Child Details"
   }
  ],
@@ -103,7 +132,7 @@
    "link_fieldname": "guest_name"
   }
  ],
- "modified": "2025-04-15 09:25:49.733397",
+ "modified": "2025-04-19 03:35:47.294993",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Guest Details",
@@ -123,6 +152,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
