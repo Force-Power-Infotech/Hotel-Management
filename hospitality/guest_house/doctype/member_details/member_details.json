@@ -61,6 +61,7 @@
    "label": "Date of Birth"
   },
   {
+   "default": "+91-",
    "fieldname": "contact_number",
    "fieldtype": "Phone",
    "label": "Contact Number"
@@ -68,7 +69,8 @@
   {
    "fieldname": "email_address",
    "fieldtype": "Data",
-   "label": "Email Address"
+   "label": "Email Address",
+   "options": "Email"
   },
   {
    "fieldname": "address",
@@ -254,7 +256,7 @@
    "link_fieldname": "member_name"
   }
  ],
- "modified": "2025-04-19 15:49:23.276196",
+ "modified": "2025-04-19 16:18:09.667808",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Member Details",
