@@ -41,17 +41,16 @@ class MemberDetails(Document):
 				"custom_expiry_date_": self.expiry_date_after_extention,
 				"custom_club_no": self.club_no,
 				"custom_salary_no": self.salary_code,
-				"custom_fathers_name": self.father_name,
-				"custom_spouses_name": self.spouse_name,
 				"custom_is_member": 1,
 
 				"custom_childs_details": [
 					{
 						"first_name": child.first_name,
 						"last_name": child.last_name,
-						"dob": child.dob
+						"dob": child.dob,
+						"relation": child.relation
 					}
-					for child in self.children_details
+					for child in self.family_member_details
 				]
 			})
 			customer.insert(ignore_permissions=True)
