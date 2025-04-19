@@ -44,7 +44,7 @@
    "fieldname": "annual_fee",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Annual Fee",
+   "label": "Membership Fee",
    "read_only": 1
   },
   {
@@ -72,7 +72,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-04-19 02:54:39.433218",
+ "modified": "2025-04-19 18:46:23.500520",
  "modified_by": "Administrator",
  "module": "Hospitality",
  "name": "Renewal button",

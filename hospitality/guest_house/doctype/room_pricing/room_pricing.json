@@ -58,8 +58,13 @@
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2025-04-19 04:00:46.834535",
+ "links": [
+  {
+   "link_doctype": "Item Price",
+   "link_fieldname": "custom_room_pricing"
+  }
+ ],
+ "modified": "2025-04-19 18:29:14.003083",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Room Pricing",

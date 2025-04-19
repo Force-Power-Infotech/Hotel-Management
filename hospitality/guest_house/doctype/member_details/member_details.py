@@ -11,7 +11,6 @@ class MemberDetails(Document):
 	def get_renewal(self):
 		if not self.membership_id:
 			frappe.throw("Please select a Membership ID")
-		self.renewal_table = []
 		doc = frappe.db.get_value("Membership", self.membership_id, ["name", "membership_name","membership_type", "start_date", "end_date", "annual_fee"], as_dict=True)
 		self.append("renewal_table", {
 			"membership_id": doc.name,
