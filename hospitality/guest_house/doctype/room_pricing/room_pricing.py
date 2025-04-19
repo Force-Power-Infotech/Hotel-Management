@@ -5,29 +5,17 @@ import frappe
 from frappe.model.document import Document
 
 class RoomPricing(Document):
-	def validate(self):
+	def after_insert(self):
 		self.update_pricing()
 
 	def update_pricing(self):
-		item_price = frappe.db.get_value(
-			"Item Price",
-			{"item_code": self.sales_item, "price_list": "Standard Selling"},
-			"name"
-		)
-
-		if item_price:
-			ip = frappe.get_doc("Item Price", item_price)
-			ip.price_list_rate = self.rate
-			ip.valid_from = self.from_date
-			ip.valid_upto = self.to_date
-			ip.save()
-		else:
-			ip = frappe.new_doc("Item Price")
-			ip.item_code = self.sales_item
-			ip.price_list = "Standard Selling"
-			ip.price_list_rate = self.rate
-			ip.valid_from = self.from_date
-			ip.valid_upto = self.to_date
-			ip.insert()
+		ip = frappe.new_doc("Item Price")
+		ip.item_code = self.sales_item
+		ip.price_list = "Standard Selling"
+		ip.price_list_rate = self.rate
+		ip.valid_from = self.from_date
+		ip.valid_upto = self.to_date
+		ip.custom_room_pricing = self.name
+		ip.insert()
 
 		self.sales_item_price = ip.name
