@@ -37,6 +37,7 @@
    "label": "Full Name"
   },
   {
+   "default": "+91-",
    "fieldname": "contact_number",
    "fieldtype": "Phone",
    "label": "Contact Number"
@@ -44,7 +45,8 @@
   {
    "fieldname": "email_address",
    "fieldtype": "Data",
-   "label": "Email Address"
+   "label": "Email Address",
+   "options": "Email"
   },
   {
    "fieldname": "date_of_birth",
@@ -132,7 +134,7 @@
    "link_fieldname": "guest_name"
   }
  ],
- "modified": "2025-04-19 03:35:47.294993",
+ "modified": "2025-04-19 16:19:59.457935",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Guest Details",
