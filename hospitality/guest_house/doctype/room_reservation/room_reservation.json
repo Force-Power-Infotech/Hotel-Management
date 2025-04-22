@@ -6,17 +6,23 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "guest_details_section",
   "booking_id",
+  "member_id",
   "member_name",
+  "guest_id",
   "guest_name",
-  "details_of_people",
-  "sponsor_member_name",
+  "guest_sponsored_by",
+  "sponsor_name",
   "column_break_bveb",
-  "member",
+  "guest",
+  "book_against_guest",
   "contact_number",
-  "email_id",
-  "number_of_people",
+  "email_address",
   "amount_paid",
+  "section_break_ueim",
+  "number_of_people",
+  "details_of_people",
   "section_break_wfum",
   "hotel_room_type",
   "checkin_date",
@@ -29,7 +35,9 @@
   "section_break_vgge",
   "payment_method",
   "section_break_kqpc",
-  "special_requests"
+  "special_requests",
+  "payments_tab",
+  "additional_purchases"
  ],
  "fields": [
   {
@@ -39,51 +47,20 @@
    "unique": 1
   },
   {
-   "depends_on": "member",
-   "fieldname": "member_name",
-   "fieldtype": "Link",
-   "label": "Member Name",
-   "options": "Member Details"
-  },
-  {
-   "fieldname": "guest_name",
-   "fieldtype": "Link",
-   "label": "Guest Name",
-   "options": "Guest Details"
-  },
-  {
    "fieldname": "details_of_people",
    "fieldtype": "Table",
    "label": "Details of People",
    "options": "Details of People"
   },
   {
-   "default": "0",
-   "fieldname": "sponsor_member_name",
-   "fieldtype": "Check",
-   "label": "Sponsor Member Name"
-  },
-  {
    "fieldname": "column_break_bveb",
    "fieldtype": "Column Break"
-  },
-  {
-   "default": "0",
-   "fieldname": "member",
-   "fieldtype": "Check",
-   "label": "Member"
   },
   {
    "fetch_from": "member_name.contact_number",
    "fieldname": "contact_number",
    "fieldtype": "Phone",
    "label": "Contact Number"
-  },
-  {
-   "fetch_from": "member_name.email_address",
-   "fieldname": "email_id",
-   "fieldtype": "Data",
-   "label": "Email ID"
   },
   {
    "fieldname": "number_of_people",
@@ -97,7 +74,8 @@
   },
   {
    "fieldname": "section_break_wfum",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Booking Details"
   },
   {
    "fetch_from": "hotel_room_number.room_type",
@@ -156,16 +134,102 @@
    "label": "Special Requests"
   },
   {
-   "fetch_from": "member_name.stay_preference",
    "fieldname": "preference",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Hotel Room Preference"
+  },
+  {
+   "depends_on": "eval:doc.guest != 1",
+   "fieldname": "member_id",
+   "fieldtype": "Link",
+   "label": "Member ID",
+   "options": "Member Details"
+  },
+  {
+   "depends_on": "eval:doc.guest != 1",
+   "fetch_from": "member_id.full_name",
+   "fieldname": "member_name",
+   "fieldtype": "Data",
+   "label": "Member Name",
+   "read_only": 1
+  },
+  {
+   "depends_on": "guest",
+   "fieldname": "guest_id",
+   "fieldtype": "Link",
+   "label": "Guest ID",
+   "options": "Guest Details"
+  },
+  {
+   "depends_on": "guest",
+   "fetch_from": "guest_id.full_name",
+   "fieldname": "guest_name",
+   "fieldtype": "Data",
+   "label": "Guest Name",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "guest",
+   "fieldtype": "Check",
+   "label": "Is Guest"
+  },
+  {
+   "fieldname": "section_break_ueim",
+   "fieldtype": "Section Break",
+   "label": "Accompanying Guest Details"
+  },
+  {
+   "fetch_from": "member_name.email_address",
+   "fieldname": "email_address",
+   "fieldtype": "Data",
+   "label": "Email Address"
+  },
+  {
+   "default": "0",
+   "depends_on": "guest",
+   "fieldname": "book_against_guest",
+   "fieldtype": "Check",
+   "label": "Book against Guest"
+  },
+  {
+   "depends_on": "guest",
+   "fetch_from": "guest_id.suggested_by",
+   "fieldname": "guest_sponsored_by",
+   "fieldtype": "Link",
+   "label": "Guest Sponsored by",
+   "options": "Member Details",
+   "read_only": 1
+  },
+  {
+   "depends_on": "guest",
+   "fetch_from": "guest_sponsored_by.full_name",
+   "fieldname": "sponsor_name",
+   "fieldtype": "Data",
+   "label": "Sponsor Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "guest_details_section",
+   "fieldtype": "Section Break",
+   "label": "Guest Details"
+  },
+  {
+   "fieldname": "payments_tab",
+   "fieldtype": "Tab Break",
+   "label": "Payments"
+  },
+  {
+   "fieldname": "additional_purchases",
+   "fieldtype": "Table",
+   "label": "Additional Purchases",
+   "options": "Additional Purchases"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-04-19 02:04:35.048243",
+ "modified": "2025-04-22 12:10:49.631722",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Room Reservation",
