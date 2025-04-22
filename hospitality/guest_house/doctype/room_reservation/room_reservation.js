@@ -61,6 +61,21 @@ frappe.ui.form.on('Room Reservation', {
 					}
 				});
 		}
+	},
+
+	sales_item(frm) {
+		frappe.call({
+			method: "hospitality.guest_house.doctype.room_reservation.room_reservation.get_valid_item_price",
+			args: {
+				item_code: frm.doc.sales_item,
+				price_list: "Standard Selling"
+			},
+			callback: (r) => {
+				if (r.message) {
+					frm.set_value("hotel_room_price", r.message);
+				}
+			}
+		});
 	}
 	
 });

@@ -8,6 +8,9 @@ from frappe.desk.calendar import get_event_conditions
 
 class RoomReservation(Document):
 
+	def validate(self):
+		self.set_room_pricing_details()
+
 	def on_submit(self):
 		customer = ""
 
@@ -63,8 +66,40 @@ class RoomReservation(Document):
 		si.submit()
 
 		frappe.msgprint(f"Sales Invoice <a href='/app/sales-invoice/{si.name}'>{si.name}</a> created for {customer}")
+	
+	def set_room_pricing_details(self):
+		if not (self.checkin_date and self.checkout_date and self.hotel_room_price):
+			return
 
+		days = (frappe.utils.getdate(self.checkout_date) - frappe.utils.getdate(self.checkin_date)).days
+		if days <= 0:
+			return
 
+		total = self.hotel_room_price * days
+
+		formatted_rate = frappe.format_value(self.hotel_room_price, {"fieldtype": "Currency", "options": "INR"})
+		formatted_total = frappe.format_value(total, {"fieldtype": "Currency", "options": "INR"})
+
+		room_pricing_link = ""
+		room_pricing = frappe.db.get_value(
+			"Room Pricing",
+			{
+				"room_number": self.hotel_room_number,
+				"rate": self.hotel_room_price
+			},
+			"name"
+		)
+		if room_pricing:
+			room_pricing_link = f"<a href='/app/room-pricing/{room_pricing}' target='_blank'>{room_pricing}</a>"
+
+		self.room_pricing_details = f"""Check-in Date		: {frappe.format_value(self.checkin_date, {'fieldtype': 'Date'})}
+Check-out Date	: {frappe.format_value(self.checkout_date, {'fieldtype': 'Date'})}
+Total Stay Duration	: {days} day(s)
+Rate Per Day		: {formatted_rate}
+Total Amount	: {formatted_total}
+Room Pricing	: {room_pricing_link if room_pricing_link else "N/A"}"""
+
+@frappe.whitelist()
 def get_valid_item_price(item_code, price_list):
 	today_date = frappe.utils.today()
 
