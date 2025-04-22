@@ -84,12 +84,14 @@
    "fieldname": "hotel_room_type",
    "fieldtype": "Link",
    "label": "Hotel Room Type",
-   "options": "Hotel Room Type"
+   "options": "Hotel Room Type",
+   "reqd": 1
   },
   {
    "fieldname": "checkin_date",
    "fieldtype": "Date",
-   "label": "Checkin Date"
+   "label": "Checkin Date",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_zwfr",
@@ -99,12 +101,14 @@
    "fieldname": "hotel_room_number",
    "fieldtype": "Link",
    "label": "Hotel Room Number",
-   "options": "Hotel Room"
+   "options": "Hotel Room",
+   "reqd": 1
   },
   {
    "fieldname": "checkout_date",
    "fieldtype": "Date",
-   "label": "Checkout Date"
+   "label": "Checkout Date",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_qobe",
@@ -249,7 +253,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-04-22 12:47:10.836749",
+ "modified": "2025-04-22 16:59:52.574561",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Room Reservation",
