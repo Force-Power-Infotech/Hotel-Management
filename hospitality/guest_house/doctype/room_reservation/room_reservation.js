@@ -30,7 +30,54 @@ frappe.ui.form.on('Room Reservation', {
 		if (frm.doc.guest_id) {
 			fetch_party_details('Guest Details', frm.doc.guest_id, frm);
 		}
+	},
+
+	hotel_room_type(frm) {
+		if (frm.doc.hotel_room_type) {
+			frm.set_query('hotel_room_number', () => {
+				return {
+					filters: {
+						room_type: frm.doc.hotel_room_type
+					}
+				};
+			});
+	
+			if (frm.doc.hotel_room_number) {
+				frm.set_value('hotel_room_number', '');
+			}
+		} else {
+			frm.set_query('hotel_room_number', () => {
+				return {};
+			});
+		}
+	},	
+
+	hotel_room_number(frm) {
+		if (!frm.doc.hotel_room_type && frm.doc.hotel_room_number) {
+			frappe.db.get_value('Hotel Room', frm.doc.hotel_room_number, 'room_type')
+				.then(r => {
+					if (r && r.message && r.message.room_type) {
+						frm.set_value('hotel_room_type', r.message.room_type);
+					}
+				});
+		}
+	},
+
+	sales_item(frm) {
+		frappe.call({
+			method: "hospitality.guest_house.doctype.room_reservation.room_reservation.get_valid_item_price",
+			args: {
+				item_code: frm.doc.sales_item,
+				price_list: "Standard Selling"
+			},
+			callback: (r) => {
+				if (r.message) {
+					frm.set_value("hotel_room_price", r.message);
+				}
+			}
+		});
 	}
+	
 });
 
 function update_field_requirements(frm) {
