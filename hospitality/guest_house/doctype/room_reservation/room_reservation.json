@@ -26,6 +26,7 @@
   "section_break_wfum",
   "hotel_room_type",
   "checkin_date",
+  "sales_item",
   "column_break_zwfr",
   "hotel_room_number",
   "checkout_date",
@@ -37,7 +38,8 @@
   "section_break_kqpc",
   "special_requests",
   "payments_tab",
-  "additional_purchases"
+  "additional_purchases",
+  "amended_from"
  ],
  "fields": [
   {
@@ -225,11 +227,29 @@
    "fieldtype": "Table",
    "label": "Additional Purchases",
    "options": "Additional Purchases"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Room Reservation",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fetch_from": "hotel_room_number.sales_item",
+   "fieldname": "sales_item",
+   "fieldtype": "Link",
+   "label": "Sales Item",
+   "options": "Item"
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2025-04-22 12:10:49.631722",
+ "modified": "2025-04-22 12:47:10.836749",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Room Reservation",
