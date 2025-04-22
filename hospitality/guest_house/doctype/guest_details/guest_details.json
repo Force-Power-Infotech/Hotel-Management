@@ -17,6 +17,7 @@
   "document",
   "number_of_above_id",
   "stay_preference",
+  "guest_customer",
   "suggested_members_details_section",
   "suggested_by",
   "customer",
@@ -121,6 +122,13 @@
    "fieldname": "family_member_details",
    "fieldtype": "Table",
    "options": "Child Details"
+  },
+  {
+   "fieldname": "guest_customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
@@ -134,7 +142,7 @@
    "link_fieldname": "guest_name"
   }
  ],
- "modified": "2025-04-22 11:43:20.496271",
+ "modified": "2025-04-22 15:15:28.990492",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Guest Details",

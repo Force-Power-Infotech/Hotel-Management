@@ -15,9 +15,19 @@ class RoomReservation(Document):
 			member = frappe.get_doc("Member Details", self.member_id)
 			customer = member.customer
 
-		# elif self.guest_id:
-		# 	guest = frappe.get_doc("Guest Details", self.guest_id)
-		# 	customer = guest.customer
+		elif self.guest_id:
+			if self.book_against_guest:
+				guest = frappe.get_doc("Guest Details", self.guest_id)
+				if not guest.guest_customer:
+					customer = create_customer_from_guest(guest)
+					guest.db_set("guest_customer", customer)
+				else:
+					customer = guest.guest_customer
+			else:
+				if not self.guest_sponsored_by:
+					frappe.throw("Sponsor member not set for guest reservation.")
+				member = frappe.get_doc("Member Details", self.guest_sponsored_by)
+				customer = member.customer
 
 		if not customer:
 			frappe.throw("No customer linked to this reservation.")
@@ -69,12 +79,34 @@ def get_valid_item_price(item_code, price_list):
 			valid_upto ASC
 		LIMIT 1
 	""", (item_code, price_list, today_date), as_dict=1)
-	frappe.log_error(title="Test", message=item_price)
 
 	if item_price:
 		return item_price[0].price_list_rate
 
 	return 0
+
+def create_customer_from_guest(guest):
+
+	customer = frappe.get_doc({
+		"doctype": "Customer",
+		"customer_name": guest.full_name,
+		"custom_email_adreess": guest.email_address,
+		"custom_phone_number": guest.contact_number,
+		"custom_date_of_birth": guest.date_of_birth,
+		"custom_is_member": 0,
+
+		"custom_childs_details": [
+			{
+				"first_name": child.first_name,
+				"last_name": child.last_name,
+				"dob": child.dob,
+				"relation": child.relation
+			}
+			for child in guest.family_member_details
+		]
+	})
+	customer.insert(ignore_permissions=True)
+	return customer.name
 
 @frappe.whitelist()
 def get_events(start, end, filters=None):
