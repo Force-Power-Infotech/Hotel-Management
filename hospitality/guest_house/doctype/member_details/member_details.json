@@ -256,7 +256,7 @@
    "link_fieldname": "member_name"
   }
  ],
- "modified": "2025-04-19 18:40:20.853497",
+ "modified": "2025-04-22 11:45:52.968258",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Member Details",
@@ -277,6 +277,7 @@
   }
  ],
  "row_format": "Dynamic",
+ "search_fields": "full_name",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
