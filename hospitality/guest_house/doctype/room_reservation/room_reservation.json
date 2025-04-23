@@ -19,7 +19,9 @@
   "book_against_guest",
   "contact_number",
   "email_address",
-  "amount_paid",
+  "posting_date",
+  "posting_time",
+  "set_posting_time",
   "section_break_ueim",
   "number_of_people",
   "details_of_people",
@@ -41,7 +43,9 @@
   "payments_tab",
   "additional_purchases",
   "amended_from",
-  "room_pricing_details"
+  "room_pricing_details",
+  "get_advance_payments",
+  "advances_received"
  ],
  "fields": [
   {
@@ -72,11 +76,6 @@
    "label": "Number of People"
   },
   {
-   "fieldname": "amount_paid",
-   "fieldtype": "Currency",
-   "label": "Amount Paid"
-  },
-  {
    "fieldname": "section_break_wfum",
    "fieldtype": "Section Break",
    "label": "Booking Details"
@@ -104,7 +103,8 @@
    "fieldtype": "Link",
    "label": "Hotel Room Number",
    "options": "Hotel Room",
-   "reqd": 1
+   "reqd": 1,
+   "search_index": 1
   },
   {
    "fieldname": "checkout_date",
@@ -261,12 +261,40 @@
    "fieldname": "hotel_room_price",
    "fieldtype": "Currency",
    "label": "Hotel Room Price (Per day)"
+  },
+  {
+   "fieldname": "get_advance_payments",
+   "fieldtype": "Button",
+   "label": "Get Advance Payments",
+   "options": "get_advances"
+  },
+  {
+   "fieldname": "advances_received",
+   "fieldtype": "Table",
+   "label": "Advances Received",
+   "options": "Sales Invoice Advance"
+  },
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date"
+  },
+  {
+   "default": "0",
+   "fieldname": "set_posting_time",
+   "fieldtype": "Check",
+   "label": "Edit Posting Date and Time"
+  },
+  {
+   "fieldname": "posting_time",
+   "fieldtype": "Time",
+   "label": "Posting Time"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-04-22 18:18:52.961783",
+ "modified": "2025-04-23 10:25:33.592110",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Room Reservation",
