@@ -19,6 +19,7 @@ frappe.ui.form.on('Room Reservation', {
 
 	validate(frm) {
 		validate_people_count(frm);
+		validate_checkin_checkout_dates(frm);
 	},
 
 	guest(frm) {
@@ -167,4 +168,19 @@ function toggle_posting_time_fields(frm) {
 
 	frm.set_df_property('posting_date', 'read_only', !editable);
 	frm.set_df_property('posting_time', 'read_only', !editable);
+}
+
+function validate_checkin_checkout_dates(frm) {
+	const checkin = frm.doc.checkin_date;
+	const checkout = frm.doc.checkout_date;
+
+	if (checkin && checkout) {
+		const checkinDate = new Date(checkin);
+		const checkoutDate = new Date(checkout);
+
+		if (checkoutDate <= checkinDate) {
+			frappe.utils.scroll_to(frm.fields_dict.checkout_date.wrapper);
+			frappe.throw("Checkout Date must be after Check-in Date.");
+		}
+	}
 }
