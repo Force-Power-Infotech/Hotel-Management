@@ -11,7 +11,7 @@ frappe.ui.form.on('Room Reservation', {
 	refresh(frm) {
 		update_field_requirements(frm);
 		toggle_posting_time_fields(frm);
-	
+
 		if (frm.doc.docstatus === 1) {
 			frm.set_df_property('set_posting_time', 'hidden', 1);
 		}
@@ -20,6 +20,26 @@ frappe.ui.form.on('Room Reservation', {
 	validate(frm) {
 		validate_people_count(frm);
 		validate_checkin_checkout_dates(frm);
+
+		return new Promise((resolve, reject) => {
+			frappe.call({
+				method: "hospitality.guest_house.doctype.room_reservation.room_reservation.check_room_availability",
+				args: {
+					room: frm.doc.hotel_room_number,
+					check_in: frm.doc.checkin_date,
+					check_out: frm.doc.checkout_date,
+					current_docname: frm.doc.name
+				},
+				callback: function (r) {
+					if (r.message === true) {
+						frappe.throw(__('The selected room is already booked for the given dates.'));
+						reject();
+					} else {
+						resolve();
+					}
+				}
+			});
+		});
 	},
 
 	guest(frm) {
@@ -49,7 +69,7 @@ frappe.ui.form.on('Room Reservation', {
 					}
 				};
 			});
-	
+
 			if (frm.doc.hotel_room_number) {
 				frm.set_value('hotel_room_number', '');
 			}
@@ -58,7 +78,7 @@ frappe.ui.form.on('Room Reservation', {
 				return {};
 			});
 		}
-	},	
+	},
 
 	hotel_room_number(frm) {
 		if (!frm.doc.hotel_room_type && frm.doc.hotel_room_number) {
@@ -95,8 +115,8 @@ frappe.ui.form.on('Room Reservation', {
 			frm.set_value('posting_date', frappe.datetime.get_today());
 			frm.set_value('posting_time', frappe.datetime.now_time());
 		}
-	}	
-	
+	}
+
 });
 
 function update_field_requirements(frm) {

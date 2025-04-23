@@ -289,3 +289,21 @@ def get_events(start, end, filters=None):
 			current += datetime.timedelta(days=1)
 
 	return events
+
+@frappe.whitelist()
+def check_room_availability(room, check_in, check_out, current_docname=None):
+	overlapping_reservations = frappe.db.sql("""
+		SELECT name FROM `tabRoom Reservation`
+		WHERE hotel_room_number = %s
+		AND docstatus < 2
+		AND name != %s
+		AND (
+			(checkin_date <= %s AND checkout_date >= %s) OR
+			(checkin_date <= %s AND checkout_date >= %s) OR
+			(checkin_date >= %s AND checkout_date <= %s)
+		)
+	""", (room, current_docname or '', check_in, check_in, check_out, check_out, check_in, check_out))
+
+	if overlapping_reservations:
+		return True
+	return False
