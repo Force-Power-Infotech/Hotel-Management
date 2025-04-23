@@ -22,6 +22,7 @@
   "posting_date",
   "posting_time",
   "set_posting_time",
+  "sales_invoice",
   "section_break_ueim",
   "number_of_people",
   "details_of_people",
@@ -289,12 +290,20 @@
    "fieldname": "posting_time",
    "fieldtype": "Time",
    "label": "Posting Time"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "sales_invoice",
+   "fieldtype": "Link",
+   "label": "Sales Invoice",
+   "options": "Sales Invoice",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-04-23 10:25:33.592110",
+ "modified": "2025-04-23 15:08:06.716402",
  "modified_by": "Administrator",
  "module": "Guest House",
  "name": "Room Reservation",

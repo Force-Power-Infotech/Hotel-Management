@@ -65,6 +65,9 @@ class RoomReservation(Document):
 		si.insert()
 		si.submit()
 
+		self.sales_invoice = si.name
+		self.save()
+
 		frappe.msgprint(f"Sales Invoice <a href='/app/sales-invoice/{si.name}'>{si.name}</a> created for {customer}")
 	
 	def set_room_pricing_details(self):
