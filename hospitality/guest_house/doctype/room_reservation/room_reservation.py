@@ -99,6 +99,80 @@ Rate Per Day		: {formatted_rate}
 Total Amount	: {formatted_total}
 Room Pricing	: {room_pricing_link if room_pricing_link else "N/A"}"""
 
+	@frappe.whitelist()
+	def get_advances(self):
+		import erpnext
+		from erpnext.controllers.accounts_controller import get_advance_payment_entries
+		from erpnext.accounts.party import get_party_account
+
+		self.set("advances_received", [])
+
+		party = None
+		if self.member_id:
+			member = frappe.get_doc("Member Details", self.member_id)
+			party = member.customer
+		
+		elif self.guest_id:
+			if self.book_against_guest:
+				guest = frappe.get_doc("Guest Details", self.guest_id)
+				if not guest.guest_customer:
+					frappe.msgprint("No advance payments received against the guest!")
+				else:
+					party = guest.guest_customer
+			else:
+				member = frappe.get_doc("Member Details", self.guest_sponsored_by)
+				party = member.customer
+
+		party_type = "Customer"
+		party_account = []
+		amount_field = "credit_in_account_currency"
+		company = frappe.defaults.get_defaults().company
+
+		party_account_data = get_party_account(
+			party_type, party=party, company=company, include_advance=True
+		)
+		if party_account_data:
+			party_account.append(party_account_data[0])
+			default_advance_account = party_account_data[1] if len(party_account_data) == 2 else None
+
+		payment_entries = get_advance_payment_entries(
+			party_type=party_type,
+			party=party,
+			party_account=party_account,
+			order_doctype=None,
+			include_unallocated=True
+		)
+
+		advance_allocated = 0
+		days = (frappe.utils.getdate(self.checkout_date) - frappe.utils.getdate(self.checkin_date)).days
+		if days <= 0:
+			frappe.throw("Please validate checkin and checkout dates!")
+
+		total = self.hotel_room_price * days
+
+		for d in payment_entries:
+			amount = total
+			allocated_amount = min(amount - advance_allocated, d.amount)
+			advance_allocated += allocated_amount
+
+			advance_row = {
+				"doctype": "Sales Invoice Advance",
+				"reference_type": d.get("reference_type"),
+				"reference_name": d.get("reference_name"),
+				"reference_row": d.get("reference_row"),
+				"remarks": d.get("remarks"),
+				"advance_amount": d.amount,
+				"allocated_amount": allocated_amount,
+				"ref_exchange_rate": d.get("exchange_rate", 1),
+				"difference_posting_date": self.posting_date,
+			}
+			if d.get("paid_from"):
+				advance_row["account"] = d.paid_from
+			if d.get("paid_to"):
+				advance_row["account"] = d.paid_to
+
+			self.append("advances_received", advance_row)
+
 @frappe.whitelist()
 def get_valid_item_price(item_code, price_list):
 	today_date = frappe.utils.today()
