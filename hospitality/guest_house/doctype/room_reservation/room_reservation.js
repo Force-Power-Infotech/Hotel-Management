@@ -4,10 +4,17 @@
 frappe.ui.form.on('Room Reservation', {
 	onload(frm) {
 		update_field_requirements(frm);
+		set_default_posting_values(frm);
+		toggle_posting_time_fields(frm);
 	},
 
 	refresh(frm) {
 		update_field_requirements(frm);
+		toggle_posting_time_fields(frm);
+	
+		if (frm.doc.docstatus === 1) {
+			frm.set_df_property('set_posting_time', 'hidden', 1);
+		}
 	},
 
 	validate(frm) {
@@ -76,7 +83,18 @@ frappe.ui.form.on('Room Reservation', {
 				}
 			}
 		});
-	}
+	},
+
+	set_posting_time(frm) {
+		toggle_posting_time_fields(frm);
+	},
+
+	before_save(frm) {
+		if (!frm.doc.set_posting_time) {
+			frm.set_value('posting_date', frappe.datetime.get_today());
+			frm.set_value('posting_time', frappe.datetime.now_time());
+		}
+	}	
 	
 });
 
@@ -133,4 +151,20 @@ function validate_people_count(frm) {
 			frappe.throw(`You have entered ${entered} as the number of people, but added ${rows} detail(s)!`);
 		}
 	}
+}
+
+function set_default_posting_values(frm) {
+	if (!frm.doc.posting_date) {
+		frm.set_value('posting_date', frappe.datetime.get_today());
+	}
+	if (!frm.doc.posting_time) {
+		frm.set_value('posting_time', frappe.datetime.now_time());
+	}
+}
+
+function toggle_posting_time_fields(frm) {
+	const editable = frm.doc.set_posting_time === 1;
+
+	frm.set_df_property('posting_date', 'read_only', !editable);
+	frm.set_df_property('posting_time', 'read_only', !editable);
 }
