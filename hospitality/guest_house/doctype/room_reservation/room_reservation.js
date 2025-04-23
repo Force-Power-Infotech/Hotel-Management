@@ -15,6 +15,12 @@ frappe.ui.form.on('Room Reservation', {
 		if (frm.doc.docstatus === 1) {
 			frm.set_df_property('set_posting_time', 'hidden', 1);
 		}
+
+		if (!frm.is_new() && frm.doc.docstatus === 0) {
+			frm.page.set_primary_action(__('Submit'), () => {
+				custom_submit_flow(frm);
+			});
+		}
 	},
 
 	validate(frm) {
@@ -115,6 +121,28 @@ frappe.ui.form.on('Room Reservation', {
 			frm.set_value('posting_date', frappe.datetime.get_today());
 			frm.set_value('posting_time', frappe.datetime.now_time());
 		}
+	},
+
+	before_submit(frm) {
+		return new Promise((resolve, reject) => {
+			frappe.confirm(
+				'Is checkout complete? Please verify.',
+				() => {
+					frappe.confirm(
+						'Permanently submit the Room Reservation and create Sales Invoice?',
+						() => {
+							resolve();
+						},
+						() => {
+							reject();
+						}
+					);
+				},
+				() => {
+					reject();
+				}
+			);
+		});
 	}
 
 });
@@ -203,4 +231,22 @@ function validate_checkin_checkout_dates(frm) {
 			frappe.throw("Checkout Date must be after Check-in Date.");
 		}
 	}
+}
+
+function custom_submit_flow(frm) {
+	frappe.confirm('Is checkout complete? Please verify.',
+		() => {
+			frappe.confirm('Permanently submit the Room Reservation and create Sales Invoice?',
+				() => {
+					frm.save('Submit');
+				},
+				() => {
+					frappe.show_alert('Submission cancelled');
+				}
+			);
+		},
+		() => {
+			frappe.show_alert('Submission cancelled');
+		}
+	);
 }
