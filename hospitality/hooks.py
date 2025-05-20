@@ -42,6 +42,10 @@ app_license = "mit"
 # include js in page
 # page_js = {"page" : "public/js/file.js"}
 
+page_js = {
+    "point-of-sale": "hospitality/custom/pos_invoice/pos_extension.js"
+}
+
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
