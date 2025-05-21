@@ -5,7 +5,6 @@ from frappe.utils import nowdate
 def sell_on_credit(invoice_data):
 	import json
 	invoice_data = json.loads(invoice_data)
-	frappe.log_error("invoice_data", invoice_data)
 
 	if not invoice_data.get("customer") or not invoice_data.get("items"):
 		frappe.throw("Customer and Items are required.")
@@ -26,6 +25,7 @@ def sell_on_credit(invoice_data):
 		})
 
 	sales_invoice.flags.ignore_permissions = True
+	sales_invoice.run_method("set_missing_values")
 	sales_invoice.save()
 	sales_invoice.submit()
 
