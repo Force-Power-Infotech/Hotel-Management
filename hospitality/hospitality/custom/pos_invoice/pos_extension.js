@@ -17,7 +17,7 @@ frappe.pages["point-of-sale"].on_page_load = function (wrapper) {
 };
 
 function add_custom_pos_button(controller) {
-	if (!controller.page || !controller.frm || !controller.frm.doc) return;
+	if (!controller.frm.doc) return;
 
 	controller.page.add_menu_item(__("Sell on Credit"), () => {
 		const doc = controller.frm.doc;
