@@ -45,9 +45,13 @@ function add_custom_pos_button(controller) {
 			},
 			callback: function (r) {
 				if (!r.exc && r.message) {
-					frappe.msgprint("Sales Invoice Created: " + r.message);
-					const url = frappe.urllib.get_full_url(`/app/sales-invoice/${r.message}`);
-					window.open(url, '_blank');
+					const link = `<a href="/app/sales-invoice/${r.message}" style="font-weight: bold;">${r.message}</a>`;
+					frappe.msgprint({
+						title: __("Sales Invoice Created"),
+						message: `Sales Invoice Created: ${link}`,
+						indicator: "green"
+					});
+
 				}
 			},
 		});
