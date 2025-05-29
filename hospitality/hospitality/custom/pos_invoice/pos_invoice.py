@@ -27,6 +27,6 @@ def sell_on_credit(invoice_data):
 	sales_invoice.flags.ignore_permissions = True
 	sales_invoice.run_method("set_missing_values")
 	sales_invoice.save()
-	# sales_invoice.submit()
+	sales_invoice.submit()
 
 	return sales_invoice.name
