@@ -29,6 +29,19 @@ function add_custom_pos_buttons(controller) {
 		const invoice_data = {
 			customer: doc.customer,
 			pos_profile: doc.pos_profile,
+			taxes_and_charges: doc.taxes_and_charges || null,
+			// taxes: doc.taxes?.map(tax => ({
+			// 	charge_type: tax.charge_type,
+			// 	account_head: tax.account_head,
+			// 	description: tax.description,
+			// 	rate: tax.rate,
+			// 	cost_center: tax.cost_center,
+			// 	tax_amount: tax.tax_amount,
+			// 	tax_amount_after_discount_amount: tax.tax_amount_after_discount_amount,
+			// 	base_tax_amount: tax.base_tax_amount,
+			// 	base_tax_amount_after_discount_amount: tax.base_tax_amount_after_discount_amount,
+			// 	item_wise_tax_detail: tax.item_wise_tax_detail,
+			// })) || [],
 			items: doc.items.map(item => ({
 				item_code: item.item_code,
 				qty: item.qty,
