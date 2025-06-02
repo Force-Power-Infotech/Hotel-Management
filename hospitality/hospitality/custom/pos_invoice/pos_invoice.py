@@ -14,6 +14,7 @@ def sell_on_credit(invoice_data):
 	sales_invoice.due_date = nowdate()
 	sales_invoice.selling_price_list = "Standard Selling"
 	sales_invoice.is_pos = 0
+	sales_invoice.update_stock = 1
 
 	for item in invoice_data["items"]:
 		sales_invoice.append("items", {
