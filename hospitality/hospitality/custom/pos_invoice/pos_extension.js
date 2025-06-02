@@ -11,13 +11,12 @@ frappe.pages["point-of-sale"].on_page_load = function (wrapper) {
 		wrapper.pos = new erpnext.PointOfSale.Controller(wrapper);
 
 		setTimeout(() => {
-			add_custom_pos_button(wrapper.pos);
+			add_custom_pos_buttons(wrapper.pos);
 		}, 1000);
 	});
 };
 
-function add_custom_pos_button(controller) {
-	if (!controller.frm.doc) return;
+function add_custom_pos_buttons(controller) {
 
 	controller.page.add_menu_item(__("Sell on Credit"), () => {
 		const doc = controller.frm.doc;
@@ -46,10 +45,19 @@ function add_custom_pos_button(controller) {
 			callback: function (r) {
 				if (!r.exc && r.message) {
 
-					window.location.reload();
+					const link = `<a href="/app/sales-invoice/${r.message}" style="font-weight: bold;">${r.message}</a>`;
+					frappe.msgprint({
+						title: __("Sales Invoice Created"),
+						message: `Sales Invoice Created: ${link}`,
+						indicator: "green"
+					});
 
 				}
 			},
 		});
+	});
+
+	controller.page.add_menu_item(__("Reload"), () => {
+		window.location.reload();
 	});
 }

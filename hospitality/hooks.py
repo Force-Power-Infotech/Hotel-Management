@@ -52,6 +52,14 @@ page_js = {
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
 
+doctype_js = {
+    "Sales Invoice": "hospitality/custom/sales_invoice/sales_invoice.js",
+}
+
+doctype_calendar_js = {
+    "Room Reservation": "hospitality/guest_house/doctype/room_reservation/room_reservation_calendar.js"
+}
+
 # Svg Icons
 # ------------------
 # include app icons in desk
@@ -245,7 +253,3 @@ page_js = {
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
-
-doctype_calendar_js = {
-    "Room Reservation": "hospitality/guest_house/doctype/room_reservation/room_reservation_calendar.js"
-}
