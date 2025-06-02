@@ -11,12 +11,12 @@ frappe.pages["point-of-sale"].on_page_load = function (wrapper) {
 		wrapper.pos = new erpnext.PointOfSale.Controller(wrapper);
 
 		setTimeout(() => {
-			add_custom_pos_button(wrapper.pos);
+			add_custom_pos_buttons(wrapper.pos);
 		}, 1000);
 	});
 };
 
-function add_custom_pos_button(controller) {
+function add_custom_pos_buttons(controller) {
 
 	controller.page.add_menu_item(__("Sell on Credit"), () => {
 		const doc = controller.frm.doc;
@@ -45,10 +45,12 @@ function add_custom_pos_button(controller) {
 			callback: function (r) {
 				if (!r.exc && r.message) {
 
-					window.location.reload();
-
 				}
 			},
 		});
+	});
+
+	controller.page.add_menu_item(__("Reload"), () => {
+		window.location.reload();
 	});
 }
