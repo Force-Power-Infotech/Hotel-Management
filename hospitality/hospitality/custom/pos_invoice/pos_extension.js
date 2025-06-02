@@ -28,6 +28,7 @@ function add_custom_pos_buttons(controller) {
 
 		const invoice_data = {
 			customer: doc.customer,
+			pos_profile: doc.pos_profile,
 			items: doc.items.map(item => ({
 				item_code: item.item_code,
 				qty: item.qty,
