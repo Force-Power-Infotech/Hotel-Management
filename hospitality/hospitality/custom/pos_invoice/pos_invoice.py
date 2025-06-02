@@ -9,6 +9,10 @@ def sell_on_credit(invoice_data):
 	if not invoice_data.get("customer") or not invoice_data.get("items"):
 		frappe.throw("Customer and Items are required.")
 
+	warehouse = None
+	if invoice_data.get("pos_profile"):
+		warehouse = frappe.db.get_value("POS Profile", invoice_data["pos_profile"], "warehouse")
+	
 	sales_invoice = frappe.new_doc("Sales Invoice")
 	sales_invoice.customer = invoice_data["customer"]
 	sales_invoice.due_date = nowdate()
@@ -23,6 +27,7 @@ def sell_on_credit(invoice_data):
 			"rate": item["rate"],
 			"uom": item["uom"],
 			"conversion_factor": item["conversion_factor"],
+			"warehouse": warehouse,
 		})
 
 	sales_invoice.flags.ignore_permissions = True
