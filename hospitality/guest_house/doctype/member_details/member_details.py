@@ -32,7 +32,7 @@ class MemberDetails(Document):
 				"doctype": "Customer",
 				"customer_name": self.full_name,
 				"custom_member_id": self.member_id,
-				"customer_group": "Regular Members",
+				"customer_group": "REGULAR MEMBER",
 				"custom_email_adreess": self.email_address,
 				"custom_phone_number": self.contact_number,
 				"custom_date_of_birth": self.date_of_birth,
@@ -41,7 +41,6 @@ class MemberDetails(Document):
 				"custom_club_no": self.club_no,
 				"custom_salary_no": self.salary_code,
 				"custom_is_member": 1,
-
 				"custom_childs_details": [
 					{
 						"first_name": child.first_name,
