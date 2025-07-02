@@ -105,7 +105,7 @@ function add_custom_pos_buttons(controller) {
 					const link = `<a href="/app/sales-invoice/${r.message.invoice}" style="font-weight: bold;">${r.message.invoice}</a>`;
 					frappe.msgprint({
 						title: __("Bill Attached to Room"),
-						message: `Sales Invoice Updated: ${link} for Room Reservation : ${r.message.roomId}`,
+						message: `Additional Purchases Update for Room Reservation : ${r.message.roomId}`,
 						indicator: "green"
 					});
 					window.location.reload();

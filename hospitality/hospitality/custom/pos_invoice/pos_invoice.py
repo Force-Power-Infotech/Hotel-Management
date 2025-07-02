@@ -70,7 +70,7 @@ def add_to_room_bill(invoice_data):
 				items: array -> item list
 
         Returns:
-            dict : A name of sales invoice
+            dict : data of room reservation
 	"""
 	invoice_data = json.loads(invoice_data)
 
@@ -88,33 +88,17 @@ def add_to_room_bill(invoice_data):
 	if not room_reservation:
 		frappe.throw("No room reservation found for member")
 	
-	warehouse = None
-	if invoice_data.get("pos_profile"):
-		warehouse = frappe.db.get_value("POS Profile", invoice_data["pos_profile"], "warehouse")
+	room_reservation_doc = frappe.get_doc("Room Reservation" , room_reservation.name)
 	
-	sales_invoice = frappe.get_doc("Sales Invoice" , room_reservation.sales_invoice)
-	if not sales_invoice:
-		frappe.throw("No invoice found for room")
-	sales_invoice.update_stock = 1
-
-	for item in invoice_data["items"]:
-		sales_invoice.append("items", {
+	for item in invoice_data.get("items"):
+		room_reservation_doc.append("additional_purchases", {
 			"item_code": item["item_code"],
-			"qty": item["qty"],
-			"rate": item["rate"],
-			"uom": item["uom"],
-			"conversion_factor": item["conversion_factor"],
-			"warehouse": warehouse,
+			"quantity": item["qty"],
+			"item_name" : item["item_code"]
 		})
 
-	if invoice_data.get("taxes_and_charges"):
-		sales_invoice.taxes_and_charges = invoice_data["taxes_and_charges"]
-
-	sales_invoice.flags.ignore_permissions = True
-	sales_invoice.run_method("set_missing_values")
-	sales_invoice.save()
+	room_reservation_doc.save()
 	
 	return {
-		"invoice" : sales_invoice.name,
 		"roomId" :  room_reservation.name
 	}

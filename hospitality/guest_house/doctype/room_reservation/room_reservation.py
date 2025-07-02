@@ -11,7 +11,7 @@ class RoomReservation(Document):
 	def validate(self):
 		self.set_room_pricing_details()
 
-	def after_insert(self):
+	def on_submit(self):
 		customer = ""
 
 		if self.member_id:
@@ -63,18 +63,13 @@ class RoomReservation(Document):
 			frappe.throw("No items to bill.")
 
 		si.insert()
-		# si.submit()
+		si.submit()
 
 		self.sales_invoice = si.name
 		self.save()
 
-		frappe.msgprint(f"Sales Invoice Draft <a href='/app/sales-invoice/{si.name}'>{si.name}</a> created for {customer}")
+		frappe.msgprint(f"Sales Invoice <a href='/app/sales-invoice/{si.name}'>{si.name}</a> created for {customer}")
 	
-	def on_submit(self):
-		if self.sales_invoice:
-			si = frappe.get_doc("Sales Invoice" , self.sales_invoice)
-			if si:
-				si.submit()
 
 	def set_room_pricing_details(self):
 		if not (self.checkin_date and self.checkout_date and self.hotel_room_price):
