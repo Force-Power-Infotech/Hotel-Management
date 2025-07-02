@@ -55,3 +55,50 @@ def sell_on_credit(invoice_data):
 	sales_invoice.submit()
 
 	return sales_invoice.name
+
+@frappe.whitelist()
+def add_to_room_bill(invoice_data):
+	"""
+		Validates a member using customer mapping. 
+        (customer must be link to member doctypeeßßßß)
+        
+        Args:
+            invoice_data: JSON string
+				customer:  str -> Customer
+				pos_profile: str -> POS Profile
+				taxes_and_charges: float -> Tax And Charges
+				items: array -> item list
+
+        Returns:
+            dict : data of room reservation
+	"""
+	invoice_data = json.loads(invoice_data)
+
+	if not invoice_data.get("customer") or not invoice_data.get("items"):
+		frappe.throw("Customer and Items are required.")
+
+	member = frappe.db.get_value("Member Details" , {
+		"customer"  :    invoice_data.get("customer")
+	} , "name")
+	if not member:
+		frappe.throw("Customer is not appropriate member")
+	room_reservation = frappe.db.get_value("Room Reservation" , {
+		"member_id" : member
+	},["name" , "sales_invoice"], as_dict = True)
+	if not room_reservation:
+		frappe.throw("No room reservation found for member")
+	
+	room_reservation_doc = frappe.get_doc("Room Reservation" , room_reservation.name)
+	
+	for item in invoice_data.get("items"):
+		room_reservation_doc.append("additional_purchases", {
+			"item_code": item["item_code"],
+			"quantity": item["qty"],
+			"item_name" : item["item_code"]
+		})
+
+	room_reservation_doc.save()
+	
+	return {
+		"roomId" :  room_reservation.name
+	}

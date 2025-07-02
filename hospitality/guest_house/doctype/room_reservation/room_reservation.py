@@ -70,6 +70,7 @@ class RoomReservation(Document):
 
 		frappe.msgprint(f"Sales Invoice <a href='/app/sales-invoice/{si.name}'>{si.name}</a> created for {customer}")
 	
+
 	def set_room_pricing_details(self):
 		if not (self.checkin_date and self.checkout_date and self.hotel_room_price):
 			return

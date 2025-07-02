@@ -71,6 +71,49 @@ function add_custom_pos_buttons(controller) {
 		});
 	});
 
+	controller.page.add_menu_item(__("Add to Room Bill"), () => {
+		const doc = controller.frm.doc;
+
+		if (!doc.customer || !doc.items?.length) {
+			frappe.msgprint("Please select a customer and add at least one item.");
+			return;
+		}
+
+		const invoice_data = {
+			customer: doc.customer,
+			pos_profile: doc.pos_profile,
+			taxes_and_charges: doc.taxes_and_charges || null,
+			items: doc.items.map(item => ({
+				item_code: item.item_code,
+				qty: item.qty,
+				rate: item.rate,
+				uom: item.uom,
+				conversion_factor: item.conversion_factor,
+			}))
+		};
+
+		frappe.call({
+			method: "hospitality.hospitality.custom.pos_invoice.pos_invoice.add_to_room_bill",
+			args: {
+				invoice_data: JSON.stringify(invoice_data),
+			},
+			freeze : true,
+			freezeMessage : "Please wait...",
+			callback: function (r) {
+				if (r.message) {
+
+					const link = `<a href="/app/sales-invoice/${r.message.invoice}" style="font-weight: bold;">${r.message.invoice}</a>`;
+					frappe.msgprint({
+						title: __("Bill Attached to Room"),
+						message: `Additional Purchases Update for Room Reservation : ${r.message.roomId}`,
+						indicator: "green"
+					});
+					window.location.reload();
+				}
+			},
+		});
+	});
+
 	controller.page.add_menu_item(__("Reload"), () => {
 		window.location.reload();
 	});
