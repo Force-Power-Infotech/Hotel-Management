@@ -96,6 +96,7 @@ function add_custom_pos_buttons(controller) {
 			method: "hospitality.hospitality.custom.pos_invoice.pos_invoice.add_to_room_bill",
 			args: {
 				invoice_data: JSON.stringify(invoice_data),
+				pos_invoice : doc.name
 			},
 			freeze : true,
 			freezeMessage : "Please wait...",
