@@ -57,20 +57,20 @@ def sell_on_credit(invoice_data):
 	return sales_invoice.name
 
 @frappe.whitelist()
-def add_to_room_bill(invoice_data):
+def add_to_room_bill(invoice_data, pos_invoice):
 	"""
 		Validates a member using customer mapping. 
-        (customer must be link to member doctypeeßßßß)
-        
-        Args:
-            invoice_data: JSON string
+		(customer must be link to member doctypeeßßßß)
+		
+		Args:
+			invoice_data: JSON string
 				customer:  str -> Customer
 				pos_profile: str -> POS Profile
 				taxes_and_charges: float -> Tax And Charges
 				items: array -> item list
 
-        Returns:
-            dict : data of room reservation
+		Returns:
+			dict : data of room reservation
 	"""
 	invoice_data = json.loads(invoice_data)
 
@@ -90,15 +90,43 @@ def add_to_room_bill(invoice_data):
 	
 	room_reservation_doc = frappe.get_doc("Room Reservation" , room_reservation.name)
 	
+
+	doc = frappe.get_doc({
+		"doctype": "Stock Entry",
+		"stock_entry_type": "Material Issue",  # or "Material Issue" if needed
+		"company": "Zaloni Club",
+		"posting_date": frappe.utils.nowdate(),
+		"posting_time": frappe.utils.nowtime(),
+		"from_bom": 0,
+		"set_posting_time": 0,
+		"items": [],
+	})
+	
 	for item in invoice_data.get("items"):
 		room_reservation_doc.append("additional_purchases", {
 			"item_code": item["item_code"],
 			"quantity": item["qty"],
 			"item_name" : item["item_code"]
 		})
+		doc.append("items", {
+			"item_code": item["item_code"],
+			"item_name": item.get("item_name"),
+			"qty": item["qty"],
+			"uom": item["uom"],
+			"stock_uom": item["uom"],  # usually same as uom
+			"conversion_factor": item["conversion_factor"],
+			"s_warehouse": "BAR COUNTER - ZC",
+			"basic_rate": item.get("rate"),   # or use "valuation_rate"
+			"expense_account": "Stock Adjustment - ZC",  # update if needed
+			"cost_center": "Main - ZC",                 # update if needed
+		})
 
 	room_reservation_doc.save()
-	
+	doc.insert(ignore_permissions=True)
+	doc.submit()
+ 
+	frappe.delete_doc("POS Invoice" , pos_invoice)
+	frappe.db.commit()
 	return {
 		"roomId" :  room_reservation.name
 	}
